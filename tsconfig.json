@@ -1,0 +1,21 @@
+{
+  "exclude": ["./src/**/.*", "./node_modules/**/*"],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["components/*"],
+      "assets/*": ["assets/*"]
+    },
+    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "experimentalDecorators": false,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "allowJs": false,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "skipLibCheck": true
+  }
+}

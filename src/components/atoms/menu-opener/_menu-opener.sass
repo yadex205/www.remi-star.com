@@ -1,0 +1,52 @@
+.a-menu-opener
+  display: block
+  width: 48px
+  height: 48px
+  box-sizing: border-box
+  border-radius: 50%
+  overflow: hidden
+  background-image: linear-gradient(to top, #4ed, #4df)
+  cursor: pointer
+
+  & > ul
+    position: relative
+    width: 100%
+    height: 100%
+    margin: 0
+    box-sizing: border-box
+    list-style-type: none
+
+    & > li
+      position: absolute
+      width: 60%
+      height: 6%
+      left: 20%
+      transform: rotate(0deg)
+      background-color: #fff
+      transition: top 0.2s ease-out 0.2s, transform 0.2s ease-in
+
+      &:nth-child(1)
+        top: 31%
+
+      &:nth-child(2)
+        top: 47%
+
+      &:nth-child(3)
+        top: 63%
+
+  &--opened
+    & > ul
+      & > li
+        transition: top 0.2s ease-in, transform 0.2s ease-out 0.2s
+
+        &:nth-child(1)
+          top: 47%
+          transform: rotate(45deg)
+
+        &:nth-child(2)
+          top: 47%
+          transform: scale(0)
+
+        &:nth-child(3)
+          top: 47%
+          transform: rotate(-45deg)

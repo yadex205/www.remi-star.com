@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - 8443:443
+    volumes:
+      - ./public:/usr/local/site
