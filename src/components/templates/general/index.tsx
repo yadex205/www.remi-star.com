@@ -19,3 +19,11 @@ export default function General(props: Props) {
     </div>
   );
 }
+
+interface TitleProps {
+  title: string;
+}
+
+export function GeneralTitle(props: TitleProps) {
+  return <div className="t-general__title">{props.title}</div>;
+}

@@ -1,4 +1,4 @@
-.m-home-section
+.m-section
   display: flex
   width: 100%
   max-width: 1024px
@@ -21,6 +21,9 @@
     font-family: $typography-fonts
     letter-spacing: 0.05em
     color: $red
+
+    &:empty
+      display: none
 
   &__column-body
     padding: 12px 0

@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 
 import General from 'components/templates/general';
 import MainVisual from 'components/molecules/main-visual';
-import HomeSection, { HomeSectionColumn } from 'components/molecules/home-section';
+import Section, { SectionColumn } from 'components/molecules/section';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export default function Index() {
@@ -16,8 +16,8 @@ export default function Index() {
 
       <MainVisual />
 
-      <HomeSection>
-        <HomeSectionColumn title="live schedule">
+      <Section>
+        <SectionColumn title="live schedule">
           <DetailedLink to="/kiji"
                         date="2018.10.13"
                         day="sat"
@@ -59,8 +59,8 @@ export default function Index() {
                         title="Three for Flavin"
                         place="銀座 Miiya Cafe" />
           <footer>サポートでの出演もあります。<br />全ての出演予定は live ページをご覧ください！</footer>
-        </HomeSectionColumn>
-        <HomeSectionColumn title="twitter">
+        </SectionColumn>
+        <SectionColumn title="twitter">
           <a className="twitter-timeline"
              href="https://twitter.com/remiriya27"
              data-widget-id="607049707467120641"
@@ -69,17 +69,17 @@ export default function Index() {
              data-border-color="#ffc6d1"
              data-tweet-limit="3"
              data-dnt="true">Tweets from @remiriya27</a>
-        </HomeSectionColumn>
-      </HomeSection>
+        </SectionColumn>
+      </Section>
 
-      <HomeSection>
-        <HomeSectionColumn title="news">
+      <Section>
+        <SectionColumn title="news">
           <DetailedLink to="/newss"
                         date="2015.06.20"
                         day="sat"
                         title="サイトを開設しました！" />
-        </HomeSectionColumn>
-      </HomeSection>
+        </SectionColumn>
+      </Section>
     </General>
   );
 }

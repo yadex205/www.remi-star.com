@@ -14,7 +14,7 @@ export default function Header() {
         <nav className="o-header__nav">
           <ul>
             <li className="active"><Link to="">top</Link></li>
-            <li><Link to="">news</Link></li>
+            <li><Link to="/news">news</Link></li>
             <li><Link to="">live</Link></li>
             <li><Link to="">works</Link></li>
             <li><Link to="">profile</Link></li>
