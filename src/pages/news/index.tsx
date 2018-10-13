@@ -11,9 +11,15 @@ export default function NewsIndex() {
       <GeneralTitle title="news" />
       <Section>
         <SectionColumn>
-          <DetailedLink to=""
-                        date=""
-                        day=""
+          <DetailedLink large={true}
+                        to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
+                        title="サイト開設" />
+          <DetailedLink large={true}
+                        to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
                         title="サイト開設" />
         </SectionColumn>
       </Section>

@@ -7,11 +7,13 @@ interface Props {
   day: string;
   title: string;
   place?: string;
+  large?: boolean;
 }
 
 export default function DetailedLink(props: Props) {
   return (
-    <Link className="m-detailed-link" to={props.to}>
+    <Link className={`m-detailed-link ${props.large ? 'm-detailed-link--large' : ''}`}
+          to={props.to}>
       <div className="m-detailed-link__date">
         <div>{props.date}</div>
         <div>{props.day}</div>
