@@ -57,6 +57,7 @@ export default function Index() {
                         day="sat"
                         title="Three for Flavin"
                         place="銀座 Miiya Cafe" />
+          <footer>サポートでの出演もあります。<br />全ての出演予定は live ページをご覧ください！</footer>
         </HomeSectionColumn>
         <HomeSectionColumn title="twitter">
 
