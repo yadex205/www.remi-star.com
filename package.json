@@ -1,14 +1,13 @@
 {
-  "name": "@yadex205/scaffold-ssg-cms-hybrid",
-  "description": "Gatsby.js powered Website scaffold with HeadlessCMS",
-  "version": "1.2.0",
+  "name": "www.remi-star.com",
+  "description": "The sources for www.remi-star.com",
+  "version": "0.0.0",
   "author": "Kanon Kakuno <yadex205@outlook.jp>",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tslint --project ."
+    "start": "gatsby develop",
+    "test": "tslint --project ."
   },
   "dependencies": {
     "gatsby": "^2.0.0",
@@ -32,8 +31,5 @@
     "tslint-microsoft-contrib": "^5.2.1",
     "typescript": "^3.1.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yadex205/scaffold-ssg-cms-hybrid"
-  }
+  "private": true
 }
