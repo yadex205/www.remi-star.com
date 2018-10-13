@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import General from 'components/templates/general';
 import MainVisual from 'components/molecules/main-visual';
 import HomeSection, { HomeSectionColumn } from 'components/molecules/home-section';
+import DetailedLink from 'components/molecules/detailed-link';
 
 export default function Index() {
   return (
@@ -16,7 +17,46 @@ export default function Index() {
 
       <HomeSection>
         <HomeSectionColumn title="live schedule">
-
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavinaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaag "
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
+          <DetailedLink to="/kiji"
+                        date="2018.10.13"
+                        day="sat"
+                        title="Three for Flavin"
+                        place="銀座 Miiya Cafe" />
         </HomeSectionColumn>
         <HomeSectionColumn title="twitter">
 
@@ -25,7 +65,10 @@ export default function Index() {
 
       <HomeSection>
         <HomeSectionColumn title="news">
-
+          <DetailedLink to="/newss"
+                        date="2015.06.20"
+                        day="sat"
+                        title="サイトを開設しました！" />
         </HomeSectionColumn>
       </HomeSection>
     </General>
