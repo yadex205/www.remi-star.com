@@ -1,15 +1,15 @@
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
   onCreateWebpackConfig({ actions, getConfig }) {
-    const config = getConfig();
-    config.resolve = {
-      ...config.resolve,
-      plugins: [
-        ...(config.resolve.plugins || []),
-        new TsconfigPathsPlugin({ extensions: ['.tsx'] })
-      ]
-    };
-    actions.replaceWebpackConfig(config);
+    const { setWebpackConfig } = actions;
+
+    setWebpackConfig({
+      resolve: {
+        plugins: [
+          new TsConfigPathsPlugin({ extensions: ['.tsx'] })
+        ]
+      }
+    });
   }
 };
