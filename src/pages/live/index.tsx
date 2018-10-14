@@ -9,21 +9,28 @@ export default function NewsIndex() {
   return (
     <General>
       <Helmet>
-        <title>news | れーみ official website</title>
+        <title>live | れーみ official website</title>
       </Helmet>
-      <GeneralTitle title="news" />
+      <GeneralTitle title="live" />
+      <Section>
+        <SectionColumn title="れーみ ライブ (ソロ・バンド)">
+          <DetailedLink to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
+                        title="サイト開設" />
+          <DetailedLink to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
+                        title="サイト開設" />
+        </SectionColumn>
+        <SectionColumn title="サポートライブ">
+
+        </SectionColumn>
+      </Section>
+
       <Section>
         <SectionColumn>
-          <DetailedLink large={true}
-                        to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
-          <DetailedLink large={true}
-                        to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
+          {/* 過去のライブ履歴はこちら */}
         </SectionColumn>
       </Section>
     </General>

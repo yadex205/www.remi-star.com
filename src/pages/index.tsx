@@ -11,6 +11,7 @@ export default function Index() {
     <General>
       <Helmet>
         <body className="p-home" />
+        <title>れーみ official website</title>
         <script async defer src="https://platform.twitter.com/widgets.js"></script>
       </Helmet>
 
