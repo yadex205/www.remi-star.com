@@ -790,6 +790,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/reach__router@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/reach__router/-/reach__router-1.2.0.tgz#189c211870a608bec3d4162ade78ec372ad982b5"
+  dependencies:
+    "@types/history" "*"
+    "@types/react" "*"
+
 "@types/react-helmet@^5.0.7":
   version "5.0.7"
   resolved "https://registry.yarnpkg.com/@types/react-helmet/-/react-helmet-5.0.7.tgz#1cae65b2c37fe54cf56f40cd388836d4619dbc51"

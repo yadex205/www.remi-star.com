@@ -1,7 +1,33 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { Location, LocationContext } from '@reach/router';
 
-import LogoInlineSvg from '../../../assets/image/logo.svg';
+import LogoInlineSvg from 'assets/image/logo.svg';
+
+const navItems = [
+  { label: 'top', to: '/', test: /^\/(index.html)?$/ },
+  { label: 'news', to: '/news', test: /^\/news/ },
+  { label: 'live', to: '/live', test: /^\/live/ },
+  { label: 'works', to: '/works', test: /^\/works/ },
+  { label: 'profile', to: '/profile', test: /^\/profile/ },
+  { label: 'contact', to: '/contact', test: /^\/contact/ }
+];
+
+function HeaderNav(props: LocationContext) {
+  const pathname = props.location.pathname;
+
+  return (
+    <ul>
+      {navItems.map(item => {
+         return (
+           <li className={pathname.match(item.test) ? 'active' : ''}>
+             <Link to={item.to}>{item.label}</Link>
+           </li>
+         );
+      })}
+    </ul>
+  );
+}
 
 export default function Header() {
   return (
@@ -12,15 +38,9 @@ export default function Header() {
           <span>official website</span>
         </div>
         <nav className="o-header__nav">
-          <ul>
-            <li className="active"><Link to="">top</Link></li>
-            <li><Link to="/news">news</Link></li>
-            <li><Link to="">live</Link></li>
-            <li><Link to="">works</Link></li>
-            <li><Link to="">profile</Link></li>
-            <li><Link to="">contact</Link></li>
-            <li><a href="">blog</a></li>
-          </ul>
+          <Location>
+            {props => <HeaderNav {...props} />}
+          </Location>
         </nav>
       </div>
     </header>
