@@ -20,7 +20,7 @@ function HeaderNav(props: LocationContext) {
     <ul>
       {navItems.map(item => {
          return (
-           <li className={pathname.match(item.test) ? 'active' : ''}>
+           <li key={item.label} className={pathname.match(item.test) ? 'active' : ''}>
              <Link to={item.to}>{item.label}</Link>
            </li>
          );
