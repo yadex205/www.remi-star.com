@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react"
+import React, { ReactNode } from 'react';
 
 interface Props {
   htmlAttributes: object;
@@ -31,6 +31,6 @@ export default class HTML extends React.Component<Props, {}> {
           {this.props.postBodyComponents}
         </body>
       </html>
-    )
+    );
   }
 }
