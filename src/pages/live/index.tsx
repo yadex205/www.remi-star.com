@@ -5,7 +5,7 @@ import General, { GeneralTitle } from 'components/templates/general';
 import Section, { SectionColumn } from 'components/molecules/section';
 import DetailedLink from 'components/molecules/detailed-link';
 
-export default function NewsIndex() {
+export default function LiveIndex() {
   return (
     <General>
       <Helmet>
