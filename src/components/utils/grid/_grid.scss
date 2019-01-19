@@ -3,36 +3,66 @@
 
   &__body {
     display: flex;
+    flex-wrap: wrap;
+
+    @for $i from 1 through 20 {
+      $gutter: 5 * $i;
+      $margin: -1px * $gutter / 2;
+
+      @include pc {
+        #{$root}--gutter-pc-v-#{$gutter} & { margin: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-pc-h-#{$gutter} & { margin: { left: $margin; right: $margin; } }
+      }
+      @include tablet {
+        #{$root}--gutter-tablet-v-#{$gutter} & { margin: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-tablet-h-#{$gutter} & { margin: { left: $margin; right: $margin; } }
+      }
+      @include sp {
+        #{$root}--gutter-sp-v-#{$gutter} & { margin: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-sp-h-#{$gutter} & { margin: { left: $margin; right: $margin; } }
+      }
+    }
   }
 
   &__cell {
-    @include pc {
-      @for $i from 1 through 12 {
+    @for $i from 1 through 12 {
+      $width: 100% * $i / 12;
+
+      @include pc {
         &--col-pc-#{$i} {
-          $width: 100% * $i / 12;
+          max-width: $width;
+          flex: 0 0 $width;
+        }
+      }
+      @include tablet {
+        &--col-tablet-#{$i} {
+          max-width: $width;
+          flex: 0 0 $width;
+        }
+      }
+      @include sp {
+        &--col-sp-#{$i} {
           max-width: $width;
           flex: 0 0 $width;
         }
       }
     }
 
-    @include tablet {
-      @for $i from 1 through 12 {
-        &--col-pc-#{$i} {
-          $width: 100% * $i / 12;
-          max-width: $width;
-          flex: 0 0 $width;
-        }
-      }
-    }
+    @for $i from 1 through 20 {
+      $gutter: 5 * $i;
+      $margin: 1px * $gutter / 2;
 
-    @include sp {
-      @for $i from 1 through 12 {
-        &--col-pc-#{$i} {
-          $width: 100% * $i / 12;
-          max-width: $width;
-          flex: 0 0 $width;
-        }
+      @include pc {
+        #{$root}--gutter-pc-v-#{$gutter} & { padding: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-pc-h-#{$gutter} & { padding: { left: $margin; right: $margin; } }
+      }
+      @include tablet {
+        #{$root}--gutter-tablet-v-#{$gutter} & { padding: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-tablet-h-#{$gutter} & { padding: { left: $margin; right: $margin; } }
+      }
+      @include sp {
+        #{$root}--gutter-sp-v-#{$gutter} & { padding: { top: $margin; bottom: $margin; } }
+        #{$root}--gutter-sp-h-#{$gutter} & { padding: { left: $margin; right: $margin; } }
       }
     }
   }

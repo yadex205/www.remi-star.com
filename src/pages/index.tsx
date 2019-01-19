@@ -20,13 +20,14 @@ export default function Index() {
         <MainVisual />
 
         <section className="t-home__section">
-          <Grid>
-            <Cell colPC={6}>
+          <Grid gutterPC={{ h: 40, v: 60 }} gutterSP={{ v: 40 }}>
+            <Cell colPC={7} colTablet={12} colSP={12}>
               <h3>live schedule</h3>
+              <DetailedLink to="/kiji" date="2018.10.13" day="sat" title="Three for Flavin" place="銀座 Miiya Cafe" />
               <DetailedLink to="/kiji" date="2018.10.13" day="sat" title="Three for Flavin" place="銀座 Miiya Cafe" />
               <p className="a-caption">サポートでの出演もあります。<br />全ての出演予定は live ページをご覧ください！</p>
             </Cell>
-            <Cell colPC={6}>
+            <Cell colPC={5} colTablet={12} colSP={12}>
               <h3>twitter</h3>
               <a className="twitter-timeline"
                  href="https://twitter.com/remiriya27"
@@ -37,12 +38,11 @@ export default function Index() {
                  data-tweet-limit="3"
                  data-dnt="true">Tweets from @remiriya27</a>
             </Cell>
+            <Cell colPC={12} colSP={12}>
+              <h3>news</h3>
+              <DetailedLink to="/newss" date="2015.06.20" day="sat" title="サイトを開設しました！" />
+            </Cell>
           </Grid>
-        </section>
-
-        <section className="t-home__section">
-          <h3>news</h3>
-          <DetailedLink to="/newss" date="2015.06.20" day="sat" title="サイトを開設しました！" />
         </section>
       </article>
     </Layout>
