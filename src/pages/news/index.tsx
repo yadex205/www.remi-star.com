@@ -11,20 +11,22 @@ export default function NewsIndex() {
         <title>news | れーみ official website</title>
       </Helmet>
 
-      <h2>news</h2>
+      <article className="t-news-index">
+        <h2>news</h2>
 
-      <section>
-        <DetailedLink large={true}
-                      to="/aiueo"
-                      date="2018.04.23"
-                      day="sun"
-                      title="サイト開設" />
-        <DetailedLink large={true}
-                      to="/aiueo"
-                      date="2018.04.23"
-                      day="sun"
-                      title="サイト開設" />
-      </section>
+        <section>
+          <DetailedLink large={true}
+                        to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
+                        title="サイト開設" />
+          <DetailedLink large={true}
+                        to="/aiueo"
+                        date="2018.04.23"
+                        day="sun"
+                        title="サイト開設" />
+        </section>
+      </article>
     </Layout>
   );
 }
