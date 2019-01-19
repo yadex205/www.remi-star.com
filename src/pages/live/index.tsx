@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 import Layout from 'layout';
-import Section, { SectionColumn } from 'components/molecules/section';
+import Grid, { GridCell as Cell } from 'components/utils/grid';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export default function LiveIndex() {
@@ -14,27 +14,28 @@ export default function LiveIndex() {
 
       <h2>live</h2>
 
-      <Section>
-        <SectionColumn title="れーみ ライブ (ソロ・バンド)">
-          <DetailedLink to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
-          <DetailedLink to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
-        </SectionColumn>
-        <SectionColumn title="サポートライブ">
+      <section>
+        <Grid>
+          <Cell colPC={6}>
+            <h3>れーみ ライブ (ソロ・バンド)</h3>
+            <DetailedLink to="/aiueo"
+                          date="2018.04.23"
+                          day="sun"
+                          title="サイト開設" />
+            <DetailedLink to="/aiueo"
+                          date="2018.04.23"
+                          day="sun"
+                          title="サイト開設" />
+          </Cell>
+          <Cell colPC={6}>
+            <h3>サポートライブ　</h3>
+          </Cell>
+        </Grid>
+      </section>
 
-        </SectionColumn>
-      </Section>
-
-      <Section>
-        <SectionColumn>
-          {/* 過去のライブ履歴はこちら */}
-        </SectionColumn>
-      </Section>
+      <section>
+        {/* 過去のライブ履歴は */}
+      </section>
     </Layout>
   );
 }

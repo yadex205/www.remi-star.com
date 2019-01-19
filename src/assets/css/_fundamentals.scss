@@ -8,3 +8,15 @@ h2 {
   font-family: $typography-fonts;
   color: $red;
 }
+
+h3 {
+  padding: 16px 0 12px;
+  border-bottom: 1px solid $pink;
+  font-weight: normal;
+  font-size: 20px;
+  font-family: $typography-fonts;
+  letter-spacing: 0.05em;
+  color: $red;
+
+  &:empty { display: none; }
+}

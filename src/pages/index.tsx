@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 
 import Layout from 'layout';
 import MainVisual from 'components/molecules/main-visual';
-import Section, { SectionColumn } from 'components/molecules/section';
 import DetailedLink from 'components/molecules/detailed-link';
 
 import Grid, { GridCell as Cell } from 'components/utils/grid';
@@ -41,28 +40,10 @@ export default function Index() {
           </Grid>
         </section>
 
-        <Section>
-          <SectionColumn title="live schedule">
-            <DetailedLink to="/kiji"
-                          date="2018.10.13"
-                          day="sat"
-                          title="Three for Flavin"
-                          place="銀座 Miiya Cafe" />
-            <footer>サポートでの出演もあります。<br />全ての出演予定は live ページをご覧ください！</footer>
-          </SectionColumn>
-          <SectionColumn title="twitter">
-          </SectionColumn>
-        </Section>
-
-        <Section>
-          <SectionColumn title="news">
-            <DetailedLink to="/newss"
-                          date="2015.06.20"
-                          day="sat"
-                          title="サイトを開設しました！" />
-          </SectionColumn>
-        </Section>
-
+        <section className="t-home__section">
+          <h3>news</h3>
+          <DetailedLink to="/newss" date="2015.06.20" day="sat" title="サイトを開設しました！" />
+        </section>
       </article>
     </Layout>
   );
