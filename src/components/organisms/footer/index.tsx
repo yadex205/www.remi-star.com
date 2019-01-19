@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="o-footer">
       <div className="o-footer__inner">
         <div className="o-footer__copy">
-          &copy; 2015-present re-mi All rights reserved.
+          &copy; 2019 re-mi All rights reserved.
         </div>
         <Link className="o-footer__policy-link" to="/policy">site policy</Link>
       </div>
