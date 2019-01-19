@@ -6,7 +6,8 @@
     "baseUrl": "src",
     "paths": {
       "components/*": ["components/*"],
-      "assets/*": ["assets/*"]
+      "assets/*": ["assets/*"],
+      "layout": ["layout"]
     },
     "jsx": "react",
     "lib": ["dom", "esnext"],

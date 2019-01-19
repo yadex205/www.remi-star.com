@@ -1,0 +1,37 @@
+.m-section {
+  display: flex;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 48px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  align-items: flex-start;
+
+  &__column {
+    flex: 1 0 0;
+
+    & + * { margin-left: 24px; }
+  }
+
+  &__column-title {
+    padding: 16px 0 12px;
+    border-bottom: 1px solid $pink;
+    font-size: 20px;
+    font-family: $typography-fonts;
+    letter-spacing: 0.05em;
+    color: $red;
+
+    &:empty { display: none; }
+  }
+
+  &__column-body {
+    padding: 12px 0;
+
+    & > footer {
+      margin-top: 12px;
+      font-size: 14px;
+      color: $red;
+    }
+  }
+}

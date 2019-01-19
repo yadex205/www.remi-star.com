@@ -1,0 +1,39 @@
+.u-grid {
+  $root: &;
+
+  &__body {
+    display: flex;
+  }
+
+  &__cell {
+    @include pc {
+      @for $i from 1 through 12 {
+        &--col-pc-#{$i} {
+          $width: 100% * $i / 12;
+          max-width: $width;
+          flex: 0 0 $width;
+        }
+      }
+    }
+
+    @include tablet {
+      @for $i from 1 through 12 {
+        &--col-pc-#{$i} {
+          $width: 100% * $i / 12;
+          max-width: $width;
+          flex: 0 0 $width;
+        }
+      }
+    }
+
+    @include sp {
+      @for $i from 1 through 12 {
+        &--col-pc-#{$i} {
+          $width: 100% * $i / 12;
+          max-width: $width;
+          flex: 0 0 $width;
+        }
+      }
+    }
+  }
+}

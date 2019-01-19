@@ -1,17 +1,19 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import General, { GeneralTitle } from 'components/templates/general';
+import Layout from 'layout';
 import Section, { SectionColumn } from 'components/molecules/section';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export default function LiveIndex() {
   return (
-    <General>
+    <Layout>
       <Helmet>
         <title>live | れーみ official website</title>
       </Helmet>
-      <GeneralTitle title="live" />
+
+      <h2>live</h2>
+
       <Section>
         <SectionColumn title="れーみ ライブ (ソロ・バンド)">
           <DetailedLink to="/aiueo"
@@ -33,6 +35,6 @@ export default function LiveIndex() {
           {/* 過去のライブ履歴はこちら */}
         </SectionColumn>
       </Section>
-    </General>
+    </Layout>
   );
 }

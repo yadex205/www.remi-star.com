@@ -1,0 +1,31 @@
+.m-discography {
+  display: flex;
+
+  &__thumbnail-wrapper {
+    position: relative;
+    width: 25vw;
+    max-width: 256px;
+    height: 25vw;
+    max-height: 256px;
+    flex: 0 0 25vw;
+    overflow: hidden;
+    background-color: $light-pink;
+  }
+
+  &__text-wrapper{
+    margin-left: 24px;
+    color: $text-black;
+  }
+
+  &__name {
+    font-size: 20px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid $light-pink;
+  }
+
+  &__genre {
+    margin-bottom: 10px;
+  }
+}

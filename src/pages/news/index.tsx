@@ -1,17 +1,19 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import General, { GeneralTitle } from 'components/templates/general';
+import Layout from 'layout';
 import Section, { SectionColumn } from 'components/molecules/section';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export default function NewsIndex() {
   return (
-    <General>
+    <Layout>
       <Helmet>
         <title>news | れーみ official website</title>
       </Helmet>
-      <GeneralTitle title="news" />
+
+      <h2>news</h2>
+
       <Section>
         <SectionColumn>
           <DetailedLink large={true}
@@ -26,6 +28,6 @@ export default function NewsIndex() {
                         title="サイト開設" />
         </SectionColumn>
       </Section>
-    </General>
+    </Layout>
   );
 }
