@@ -3,6 +3,8 @@ import { Link } from 'gatsby';
 import { Location, LocationContext } from '@reach/router';
 
 import LogoInlineSvg from 'assets/image/logo.svg';
+import HamburgerButton from 'components/atoms/hamburger-button';
+import SpMenu from 'components/organisms/sp-menu';
 
 const navItems = [
   { label: 'top', to: '/', test: /^\/(index.html)?$/ },
@@ -31,18 +33,23 @@ function HeaderNav(props: LocationContext) {
 
 export default function Header() {
   return (
-    <header className="o-header">
-      <div className="o-header__inner">
-        <div className="o-header__brand">
-          <img alt="れーみ" src={LogoInlineSvg} />
-          <span>official website</span>
+    <>
+      <header className="o-header">
+        <div className="o-header__inner">
+          <div className="o-header__brand">
+            <img alt="れーみ" src={LogoInlineSvg} />
+            <span>official website</span>
+          </div>
+          <nav className="o-header__nav">
+            <Location>
+              {props => <HeaderNav {...props} />}
+            </Location>
+          </nav>
         </div>
-        <nav className="o-header__nav">
-          <Location>
-            {props => <HeaderNav {...props} />}
-          </Location>
-        </nav>
-      </div>
-    </header>
+      </header>
+      <Location>
+        { props => <SpMenu navItems={navItems} {...props} /> }
+      </Location>
+    </>
   );
 }

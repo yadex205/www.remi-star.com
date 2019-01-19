@@ -1,22 +1,27 @@
 .o-header {
   position: relative;
-  padding-top: 48px;
+  padding: 48px 12vw 0;
   background-image: linear-gradient(to top, $red 4px, $pink 4px);
   box-shadow: 0 4px 12px $shadow-black;
-  z-index: 1000;
+
+  @include pc { z-index: 1000; }
+  @include tablet { padding: 16px 20px 20px; }
 
   &__inner {
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
-    padding: 0 48px;
     box-sizing: border-box;
   }
 
   &__brand {
     img {
-      width: 200px;
+      height: 40px;
       vertical-align: bottom;
+
+      @include tablet {
+        height: 24px;
+      }
     }
 
     span {
@@ -25,10 +30,18 @@
       font-family: $typography-fonts;
       letter-spacing: 0.05em;
       color: $red;
+
+      @include tablet {
+        margin-left: 8px;
+        line-height: 12px;
+        font-size: 11px;
+      }
     }
   }
 
   &__nav {
+    @include tablet { display: none; }
+
     & > ul {
       display: flex;
       margin: 0;
