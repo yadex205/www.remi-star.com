@@ -2,6 +2,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
+import { makePermalink } from 'assets/js/utils';
+
 import Layout from 'layout';
 import MainVisual from 'components/molecules/main-visual';
 import DetailedLink from 'components/molecules/detailed-link';
@@ -17,12 +19,21 @@ query {
     edges {
       node {
         frontmatter {
-          date(formatString: "YYYY.MM.DD")
-          dateForPath: date(formatString: "YYYY/MM/DD")
-          day: date(formatString: "ddd")
+          date
           title
           slug
         }
+      }
+    }
+  }
+
+  live: allMarkdownRemark(
+    sort: { order: ASC, fields: [frontmatter___date] },
+    filter: { frontmatter: { category: { eq: "live" }, live_form: { ne: "support" } } }
+  ) {
+    edges {
+      node {
+        frontmatter { date, title, slug, liveVenue: live_venue }
       }
     }
   }
@@ -36,14 +47,24 @@ interface Props {
         node: {
           frontmatter: {
             date: string;
-            dateForPath: string;
-            day: string;
             title: string;
             slug: string;
           }
         };
-      }[]
-    }
+      }[];
+    };
+    live: {
+      edges: {
+        node: {
+          frontmatter: {
+            date: string;
+            title: string;
+            slug: string;
+            liveVenue: string;
+          }
+        };
+      }[];
+    };
   };
 }
 
@@ -63,8 +84,19 @@ export default function Index(props: Props) {
           <Grid gutterPC={{ h: 40, v: 60 }} gutterSP={{ v: 40 }}>
             <Cell colPC={7} colTablet={12} colSP={12}>
               <h3>live schedule</h3>
-              <DetailedLink to="/kiji" date="2018.10.13" day="sat" title="Three for Flavin" place="銀座 Miiya Cafe" />
-              <DetailedLink to="/kiji" date="2018.10.13" day="sat" title="Three for Flavin" place="銀座 Miiya Cafe" />
+
+              {props.data.live.edges.map(({ node }, index) => {
+                 const { title, slug, liveVenue } = node.frontmatter;
+                 const date = new Date(node.frontmatter.date);
+                 return (
+                   <DetailedLink to={makePermalink({ category: 'live', date, slug })}
+                                 date={date}
+                                 title={title}
+                                 place={liveVenue}
+                                 key={index} />
+                 );
+              })}
+
               <p className="a-caption">サポートでの出演もあります。<br />全ての出演予定は live ページをご覧ください！</p>
             </Cell>
             <Cell colPC={5} colTablet={12} colSP={12}>
@@ -81,13 +113,14 @@ export default function Index(props: Props) {
             <Cell colPC={12} colSP={12}>
               <h3>news</h3>
 
-              {props.data.news.edges.map(({ node }) => {
-                 const { date, dateForPath, day, title, slug } = node.frontmatter;
+              {props.data.news.edges.map(({ node }, index) => {
+                 const { title, slug } = node.frontmatter;
+                 const date = new Date(node.frontmatter.date);
                  return (
-                   <DetailedLink to={`/news/${dateForPath}/${slug}`}
+                   <DetailedLink to={makePermalink({ category: 'news', date, slug })}
                                  date={date}
-                                 day={day.toLowerCase()}
-                                 title={title} />
+                                 title={title}
+                                 key={index}/>
                  );
               })}
             </Cell>

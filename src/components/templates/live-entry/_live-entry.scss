@@ -1,0 +1,9 @@
+.t-live-entry {
+  margin: 100px 0;
+  padding: 0 12vw;
+
+  @include sp {
+    margin: 40px 0;
+    padding: 0 8vw;
+  }
+}

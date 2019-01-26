@@ -2,6 +2,8 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
+import { makePermalink } from 'assets/js/utils';
+
 import Layout from 'layout';
 import DetailedLink from 'components/molecules/detailed-link';
 
@@ -14,9 +16,7 @@ query {
     edges {
       node {
         frontmatter {
-          date(formatString: "YYYY.MM.DD")
-          dateForPath: date(formatString: "YYYY/MM/DD")
-          day: date(formatString: "ddd")
+          date
           title
           slug
         }
@@ -33,8 +33,6 @@ interface Props {
         node: {
           frontmatter: {
             date: string;
-            dateForPath: string;
-            day: string;
             title: string;
             slug: string;
           }
@@ -56,12 +54,12 @@ export default function NewsIndex(props: Props) {
 
         <section>
           {props.data.allMarkdownRemark.edges.map(({ node }) => {
-             const { date, dateForPath, day, title, slug } = node.frontmatter;
+             const { title, slug } = node.frontmatter;
+             const date = new Date(node.frontmatter.date);
              return (
                <DetailedLink large={true}
-                             to={`/news/${dateForPath}/${slug}`}
+                             to={makePermalink({ category: 'news', date, slug })}
                              date={date}
-                             day={day.toLowerCase()}
                              title={title} />
              );
           })}

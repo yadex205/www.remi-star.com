@@ -9,6 +9,10 @@ module.exports = {
     const { setWebpackConfig, replaceWebpackConfig } = actions;
     const { include, exclude } = ruleProps;
 
+    if (stage === 'build-javascript') {
+      actions.setWebpackConfig({ devtool: false });
+    }
+
     if (['develop', 'develop-html', 'build-html', 'build-javascript'].includes(stage)) {
       setWebpackConfig({
         resolve: {
@@ -58,6 +62,7 @@ module.exports = {
   createPages({ actions, graphql }) {
     const { createPage } = actions;
     const newsTemplate = resolve('src/templates/news-entry.tsx');
+    const liveTemplate = resolve('src/templates/live-entry.tsx');
 
     return graphql(`
       {
@@ -66,7 +71,7 @@ module.exports = {
         ) {
           edges {
             node {
-              fileAbsolutePath
+              id
               frontmatter {
                 date(formatString: "YYYY/MM/DD")
                 category
@@ -94,7 +99,12 @@ module.exports = {
        case 'news':
          createPage({ path: permalink,
                       component: newsTemplate,
-                      context: { mdFilepath: node.fileAbsolutePath } });
+                      context: { id: node.id } });
+         break;
+       case 'live':
+         createPage({ path: permalink,
+                      component: liveTemplate,
+                      context: { id: node.id } });
          break;
        }
      });
