@@ -10,6 +10,10 @@ h1, h2 {
     margin: 60px 0 50px;
     font-size: 40px;
   }
+
+  & > small {
+    margin: 0 20px;
+  }
 }
 
 h3 {
@@ -22,4 +26,14 @@ h3 {
   color: $red;
 
   &:empty { display: none; }
+}
+
+small {
+  font-size: 0.4em;
+}
+
+p {
+  line-height: 1.4;
+  font-size: 16px;
+  color: $text-black;
 }

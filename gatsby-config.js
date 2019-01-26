@@ -12,6 +12,14 @@ module.exports = {
       options: {
         importer: sassGlobImporter()
       }
-    }
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/posts/md`,
+        name: 'markdown-posts'
+      }
+    },
+    'gatsby-transformer-remark'
   ]
 }

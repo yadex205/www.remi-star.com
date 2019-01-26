@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
 
 import Layout from 'layout';
 import MainVisual from 'components/molecules/main-visual';
@@ -7,7 +8,46 @@ import DetailedLink from 'components/molecules/detailed-link';
 
 import Grid, { GridCell as Cell } from 'components/utils/grid';
 
-export default function Index() {
+export const pageQuery = graphql`
+query {
+  news: allMarkdownRemark(
+    sort: { order: DESC, fields: [frontmatter___date] },
+    filter: { frontmatter: { category: { eq: "news" } } }
+  ) {
+    edges {
+      node {
+        frontmatter {
+          date(formatString: "YYYY.MM.DD")
+          dateForPath: date(formatString: "YYYY/MM/DD")
+          day: date(formatString: "ddd")
+          title
+          slug
+        }
+      }
+    }
+  }
+}
+`;
+
+interface Props {
+  data: {
+    news: {
+      edges: {
+        node: {
+          frontmatter: {
+            date: string;
+            dateForPath: string;
+            day: string;
+            title: string;
+            slug: string;
+          }
+        };
+      }[]
+    }
+  };
+}
+
+export default function Index(props: Props) {
   return (
     <Layout>
       <Helmet>
@@ -40,7 +80,16 @@ export default function Index() {
             </Cell>
             <Cell colPC={12} colSP={12}>
               <h3>news</h3>
-              <DetailedLink to="/newss" date="2015.06.20" day="sat" title="サイトを開設しました！" />
+
+              {props.data.news.edges.map(({ node }) => {
+                 const { date, dateForPath, day, title, slug } = node.frontmatter;
+                 return (
+                   <DetailedLink to={`/news/${dateForPath}/${slug}`}
+                                 date={date}
+                                 day={day.toLowerCase()}
+                                 title={title} />
+                 );
+              })}
             </Cell>
           </Grid>
         </section>

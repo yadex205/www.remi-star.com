@@ -1,10 +1,50 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import { graphql } from 'gatsby';
 
 import Layout from 'layout';
 import DetailedLink from 'components/molecules/detailed-link';
 
-export default function NewsIndex() {
+export const pageQuery = graphql`
+query {
+  allMarkdownRemark(
+    sort: { order: DESC, fields: [frontmatter___date] },
+    filter: { frontmatter: { category: { eq: "news" } } }
+  ) {
+    edges {
+      node {
+        frontmatter {
+          date(formatString: "YYYY.MM.DD")
+          dateForPath: date(formatString: "YYYY/MM/DD")
+          day: date(formatString: "ddd")
+          title
+          slug
+        }
+      }
+    }
+  }
+}
+`;
+
+interface Props {
+  data: {
+    allMarkdownRemark: {
+      edges: {
+        node: {
+          frontmatter: {
+            date: string;
+            dateForPath: string;
+            day: string;
+            title: string;
+            slug: string;
+          }
+        };
+      }[]
+    }
+  };
+}
+
+export default function NewsIndex(props: Props) {
   return (
     <Layout>
       <Helmet>
@@ -15,16 +55,16 @@ export default function NewsIndex() {
         <h2>news</h2>
 
         <section>
-          <DetailedLink large={true}
-                        to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
-          <DetailedLink large={true}
-                        to="/aiueo"
-                        date="2018.04.23"
-                        day="sun"
-                        title="サイト開設" />
+          {props.data.allMarkdownRemark.edges.map(({ node }) => {
+             const { date, dateForPath, day, title, slug } = node.frontmatter;
+             return (
+               <DetailedLink large={true}
+                             to={`/news/${dateForPath}/${slug}`}
+                             date={date}
+                             day={day.toLowerCase()}
+                             title={title} />
+             );
+          })}
         </section>
       </article>
     </Layout>

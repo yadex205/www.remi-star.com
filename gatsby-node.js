@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
@@ -52,5 +53,51 @@ module.exports = {
 
       replaceWebpackConfig(config);
     }
+  },
+
+  createPages({ actions, graphql }) {
+    const { createPage } = actions;
+    const newsTemplate = resolve('src/templates/news-entry.tsx');
+
+    return graphql(`
+      {
+        allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+        ) {
+          edges {
+            node {
+              fileAbsolutePath
+              frontmatter {
+                date(formatString: "YYYY/MM/DD")
+                category
+                slug
+              }
+            }
+          }
+        }
+      }
+   `).then(result => {
+     if (result.errors) {
+       return Promise.reject(result.errors);
+     }
+
+     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+       const slug = node.frontmatter.slug || 'post';
+
+       const permalink = '/' + [
+         node.frontmatter.category,
+         node.frontmatter.date,
+         slug
+       ].join('/');
+
+       switch(node.frontmatter.category) {
+       case 'news':
+         createPage({ path: permalink,
+                      component: newsTemplate,
+                      context: { mdFilepath: node.fileAbsolutePath } });
+         break;
+       }
+     });
+   });
   }
 };
