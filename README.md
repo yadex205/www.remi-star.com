@@ -1,14 +1,5 @@
-@yadex205/scaffold-ssg-cms-hybrid
-=================================
-
-Features
---------
-
-* Static site generation by Gatsby.js v2
-* Sass with glob importing
-* ESNext + TypeScript
-* React v16 + Redux
-
+www.remi-star.com
+=================
 
 Browser Support
 ---------------
@@ -25,24 +16,6 @@ Requirements
 
 How to use
 ----------
-
-### Setup
-
-```bash
-# Download this scaffold and install dependencies automatically
-PROJECT_NAME=my-awesome-site curl https://raw.githubusercontent.com/yadex205/scaffold-ssg-cms-hybrid/master/go | node
-
-# If PROJECT_NAME was not given, scaffold will be placed on `$PWD/my-project`
-
-# Move into your project
-cd my-awesome-site
-
-# Let's make pages with your favorite editor!
-emacs src/pages/index.tsx
-
-# Launch live preview
-npm run develop # or yarn develop
-```
 
 ### Linting
 
