@@ -3,10 +3,16 @@ import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
 import Layout from 'layout';
+import Grid, { GridCell as Cell } from 'components/utils/grid';
 import MainVisual from 'components/molecules/main-visual';
 import DetailedLink from 'components/molecules/detailed-link';
 
-import Grid, { GridCell as Cell } from 'components/utils/grid';
+import mainVisualImg01 from 'assets/image/home/main-visual-01.jpg'
+import mainVisualImg02 from 'assets/image/home/main-visual-02.jpg'
+import mainVisualImg03 from 'assets/image/home/main-visual-03.jpg'
+import mainVisualImg04 from 'assets/image/home/main-visual-04.jpg'
+import mainVisualImg05 from 'assets/image/home/main-visual-05.jpg'
+
 
 export const pageQuery = graphql`
 query {
@@ -58,7 +64,13 @@ export default function Index(props: Props) {
       </Helmet>
 
       <article className="t-home">
-        <MainVisual />
+        <MainVisual images={[
+          { path: mainVisualImg01, center: '50% 40%', caption: '' },
+          { path: mainVisualImg02, center: '50% 60%', caption: 'photo by Hiroshi Ota' },
+          { path: mainVisualImg03, center: '25% 50%', caption: '' },
+          { path: mainVisualImg04, center: '50% 70%', caption: '' },
+          { path: mainVisualImg05, center: '45% 50%', caption: '' },
+        ]} />
 
         <section className="t-home__section">
           <Grid gutterPC={{ h: 40, v: 60 }} gutterSP={{ v: 40 }}>

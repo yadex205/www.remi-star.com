@@ -1,11 +1,60 @@
 import React from 'react';
 
-import mainVisualInlineJpg from 'assets/image/main-visual.jpg'
+interface Props {
+  images: { path: string, center?: string; caption: string }[];
+}
 
-export default function MainVisual() {
-  return (
-    <div className="m-main-visual">
-      <img alt="main visual" src={mainVisualInlineJpg} />
-    </div>
-  );
+interface States {
+  currentIndex: number;
+}
+
+export default class MainVisual extends React.Component<Props, States> {
+  private length: number;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.length = props.images.length;
+    this.state = {
+      currentIndex: 0
+    };
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.nextSlide();
+    }, 5000);
+  }
+
+  private nextSlide() {
+    if (this.state.currentIndex + 1 >= this.length) {
+      this.setState({ currentIndex: 0 });
+    } else {
+      this.setState({ currentIndex: this.state.currentIndex + 1 });
+    }
+  }
+
+  render() {
+    return (
+      <div className="m-main-visual">
+        <figure className="m-main-visual__carousel">
+          <ul className="m-main-visual__carousel-slide-container">
+            {this.props.images.map((img, index) => (
+              <li className={index === this.state.currentIndex ? 'active' : ''}
+                  style={{
+                    backgroundImage: `url(${img.path})`,
+                    backgroundPosition: img.center || 'center'
+                  }}
+                  key={index} />
+            ))}
+          </ul>
+          <caption className="m-main-visual__carousel-caption">
+            {this.props.images.map((img, index) => (
+              <div className={index === this.state.currentIndex ? 'active' : ''}>{img.caption}</div>
+            ))}
+          </caption>
+        </figure>
+      </div>
+    );
+  }
 }
