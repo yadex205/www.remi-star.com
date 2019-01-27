@@ -10,6 +10,7 @@ interface States {
 
 export default class MainVisual extends React.Component<Props, States> {
   private length: number;
+  private timer: number;
 
   constructor(props: Props) {
     super(props);
@@ -21,9 +22,13 @@ export default class MainVisual extends React.Component<Props, States> {
   }
 
   componentDidMount() {
-    setInterval(() => {
+    this.timer = window.setInterval(() => {
       this.nextSlide();
     }, 5000);
+  }
+
+  componentWillUnmount() {
+    window.clearInterval(this.timer);
   }
 
   private nextSlide() {
@@ -48,11 +53,12 @@ export default class MainVisual extends React.Component<Props, States> {
                   key={index} />
             ))}
           </ul>
-          <caption className="m-main-visual__carousel-caption">
+          <figcaption className="m-main-visual__carousel-caption">
             {this.props.images.map((img, index) => (
-              <div className={index === this.state.currentIndex ? 'active' : ''}>{img.caption}</div>
+              <div className={index === this.state.currentIndex ? 'active' : ''}
+                   key={index}>{img.caption}</div>
             ))}
-          </caption>
+          </figcaption>
         </figure>
       </div>
     );
