@@ -2,8 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import { makePermalink } from 'assets/js/utils';
-
 import Layout from 'layout';
 import MainVisual from 'components/molecules/main-visual';
 import DetailedLink from 'components/molecules/detailed-link';
@@ -12,29 +10,15 @@ import Grid, { GridCell as Cell } from 'components/utils/grid';
 
 export const pageQuery = graphql`
 query {
-  news: allMarkdownRemark(
-    sort: { order: DESC, fields: [frontmatter___date] },
-    filter: { frontmatter: { category: { eq: "news" } } }
-  ) {
+  news: allContentfulNews(sort: { order: DESC, fields: [date] }) {
     edges {
-      node {
-        frontmatter {
-          date
-          title
-          slug
-        }
-      }
+      node { title, slug, date }
     }
   }
 
-  live: allMarkdownRemark(
-    sort: { order: ASC, fields: [frontmatter___date] },
-    filter: { frontmatter: { category: { eq: "live" }, live_form: { ne: "support" } } }
-  ) {
+  live: allContentfulLive(sort: { order: ASC, fields: [date] }, filter: { form: { ne: "support" } }) {
     edges {
-      node {
-        frontmatter { date, title, slug, liveVenue: live_venue }
-      }
+      node { title, slug, date, venue }
     }
   }
 }
@@ -45,23 +29,19 @@ interface Props {
     news: {
       edges: {
         node: {
-          frontmatter: {
-            date: string;
-            title: string;
-            slug: string;
-          }
+          title: string;
+          slug: string;
+          date: string;
         };
       }[];
     };
     live: {
       edges: {
         node: {
-          frontmatter: {
-            date: string;
-            title: string;
-            slug: string;
-            liveVenue: string;
-          }
+          title: string;
+          slug: string;
+          date: string;
+          venue: string;
         };
       }[];
     };
@@ -86,13 +66,13 @@ export default function Index(props: Props) {
               <h3>live schedule</h3>
 
               {props.data.live.edges.map(({ node }, index) => {
-                 const { title, slug, liveVenue } = node.frontmatter;
-                 const date = new Date(node.frontmatter.date);
+                 const { title, slug, venue } = node;
+                 const date = new Date(node.date);
                  return (
-                   <DetailedLink to={makePermalink({ category: 'live', date, slug })}
+                   <DetailedLink to={`/live/${slug}`}
                                  date={date}
                                  title={title}
-                                 place={liveVenue}
+                                 place={venue}
                                  key={index} />
                  );
               })}
@@ -114,10 +94,10 @@ export default function Index(props: Props) {
               <h3>news</h3>
 
               {props.data.news.edges.map(({ node }, index) => {
-                 const { title, slug } = node.frontmatter;
-                 const date = new Date(node.frontmatter.date);
+                 const { title, slug } = node;
+                 const date = new Date(node.date);
                  return (
-                   <DetailedLink to={makePermalink({ category: 'news', date, slug })}
+                   <DetailedLink to={`/news/${slug}`}
                                  date={date}
                                  title={title}
                                  key={index}/>

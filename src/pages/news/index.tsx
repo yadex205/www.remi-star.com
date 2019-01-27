@@ -2,25 +2,16 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import { makePermalink } from 'assets/js/utils';
-
 import Layout from 'layout';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export const pageQuery = graphql`
 query {
-  allMarkdownRemark(
-    sort: { order: DESC, fields: [frontmatter___date] },
-    filter: { frontmatter: { category: { eq: "news" } } }
+  posts: allContentfulNews(
+    sort: { order: DESC, fields: [date] }
   ) {
     edges {
-      node {
-        frontmatter {
-          date
-          title
-          slug
-        }
-      }
+      node { title, slug, date }
     }
   }
 }
@@ -28,14 +19,12 @@ query {
 
 interface Props {
   data: {
-    allMarkdownRemark: {
+    posts: {
       edges: {
         node: {
-          frontmatter: {
-            date: string;
-            title: string;
-            slug: string;
-          }
+          title: string;
+          slug: string;
+          date: string;
         };
       }[]
     }
@@ -53,14 +42,14 @@ export default function NewsIndex(props: Props) {
         <h2>news</h2>
 
         <section>
-          {props.data.allMarkdownRemark.edges.map(({ node }) => {
-             const { title, slug } = node.frontmatter;
-             const date = new Date(node.frontmatter.date);
+          {props.data.posts.edges.map(({ node }) => {
+             const { title, date, slug } = node;
              return (
                <DetailedLink large={true}
-                             to={makePermalink({ category: 'news', date, slug })}
+                             to={`/news/${slug}`}
                              date={date}
-                             title={title} />
+                             title={title}
+                             key={slug} />
              );
           })}
         </section>

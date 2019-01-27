@@ -2,20 +2,17 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
+import { getDayString } from 'assets/js/utils';
+
 import Layout from 'layout';
 
 export const pageQuery = graphql`
 query($id: String!) {
-  post: markdownRemark(id: { eq: $id }) {
-    html
-    frontmatter {
-      date(formatString: "YYYY.MM.DD ddd")
-      category
-      title
-      slug
-      live_form
-      live_venue
-    }
+  post: contentfulLive(id: { eq: $id }) {
+    title
+    date
+    venue
+    article { childMarkdownRemark { html } }
   }
 }
 `;
@@ -23,32 +20,34 @@ query($id: String!) {
 interface Props {
   data: {
     post: {
-      frontmatter: {
-        date: string;
-        category: string;
-        title: string;
-        slug: string;
-        live_form: string;
-        live_venue: string;
-      };
-      html: string;
-    }
+      title: string;
+      date: string;
+      venue: string;
+      article?: { childMarkdownRemark: { html: string; } };
+    };
   };
 }
 
-export default function LiveEntry({ data: { post: { html, frontmatter } } }: Props) {
+export default function LiveEntry({ data: { post } }: Props) {
+  const { title, venue } = post;
+  const html = post.article ? post.article.childMarkdownRemark.html : '';
+  const date = new Date(post.date);
+  const dateStr = [date.getFullYear(),
+                   (date.getMonth() + 1).toString().padStart(2, '0'),
+                   date.getDate().toString().padStart(2, '0')].join('.');
+
   return (
     <Layout>
       <Helmet>
-        <title>{frontmatter.title} | live | れーみ official website</title>
+        <title>{title} | live | れーみ official website</title>
       </Helmet>
 
       <article className="t-live-entry">
-        <h2>live <small>{frontmatter.date.toLowerCase()}</small></h2>
+        <h2>live <small>{dateStr} {getDayString(date)}</small></h2>
 
-        <h3>{frontmatter.title}</h3>
+        <h3>{title}</h3>
 
-        <p>place: {frontmatter.live_venue}</p>
+        <p>place: {venue}</p>
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>

@@ -14,10 +14,10 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: 'gatsby-source-contentful',
       options: {
-        path: `${__dirname}/src/posts/md`,
-        name: 'markdown-posts'
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
+        accessToken: process.env.CONTENTFUL_CDA_ACCESS_TOKEN
       }
     },
     'gatsby-transformer-remark'

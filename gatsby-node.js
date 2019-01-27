@@ -61,53 +61,40 @@ module.exports = {
 
   createPages({ actions, graphql }) {
     const { createPage } = actions;
-    const newsTemplate = resolve('src/templates/news-entry.tsx');
-    const liveTemplate = resolve('src/templates/live-entry.tsx');
 
-    return graphql(`
-      {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
-        ) {
-          edges {
-            node {
-              id
-              frontmatter {
-                date(formatString: "YYYY/MM/DD")
-                category
-                slug
-              }
+    return Promise.all([
+      graphql(`
+        {
+          allContentfulNews(sort: { order: DESC, fields: [date] }) {
+            edges {
+              node { id, slug }
             }
           }
         }
-      }
-   `).then(result => {
-     if (result.errors) {
-       return Promise.reject(result.errors);
-     }
+      `).then(result => {
+        if (result.errors) { return Promise.reject(result.errors); }
+        const component = resolve('src/templates/news-entry.tsx');
 
-     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-       const slug = node.frontmatter.slug || 'post';
+        result.data.allContentfulNews.edges.forEach(({ node }) => {
+          createPage({ path: `/news/${node.slug}`, component, context: { id: node.id } });
+        });
+      }),
+      graphql(`
+        {
+          allContentfulLive(sort: { order: DESC, fields: [date] }) {
+            edges {
+              node { id, slug }
+            }
+          }
+        }
+      `).then(result => {
+        if (result.errors) { return Promise.reject(result.errors); }
+        const component = resolve('src/templates/live-entry.tsx');
 
-       const permalink = '/' + [
-         node.frontmatter.category,
-         node.frontmatter.date,
-         slug
-       ].join('/');
-
-       switch(node.frontmatter.category) {
-       case 'news':
-         createPage({ path: permalink,
-                      component: newsTemplate,
-                      context: { id: node.id } });
-         break;
-       case 'live':
-         createPage({ path: permalink,
-                      component: liveTemplate,
-                      context: { id: node.id } });
-         break;
-       }
-     });
-   });
+        result.data.allContentfulLive.edges.forEach(({ node }) => {
+          createPage({ path: `/live/${node.slug}`, component, context: { id: node.id } });
+        });
+      })
+    ]);
   }
 };

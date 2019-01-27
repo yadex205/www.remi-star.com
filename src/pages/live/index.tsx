@@ -2,45 +2,27 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { graphql } from 'gatsby';
 
-import { makePermalink } from 'assets/js/utils';
-
 import Layout from 'layout';
 import Grid, { GridCell as Cell } from 'components/utils/grid';
 import DetailedLink from 'components/molecules/detailed-link';
 
 export const pageQuery = graphql`
 query {
-  normal: allMarkdownRemark(
-    sort: { order: ASC, fields: [frontmatter___date] },
-    filter: { frontmatter: { category: { eq: "live" }, live_form: { ne: "support" } } }
+  main: allContentfulLive(
+    sort: { order: ASC, fields: [date] },
+    filter: { form: { ne: "support" } }
   ) {
     edges {
-      node {
-        frontmatter {
-          date
-          title
-          slug
-          liveForm: live_form
-          liveVenue: live_venue
-        }
-      }
+      node { title, slug, date, venue }
     }
   }
 
-  support: allMarkdownRemark(
-    sort: { order: ASC, fields: [frontmatter___date] },
-    filter: { frontmatter: { category: { eq: "live" }, live_form: { eq: "support" } } }
+  support: allContentfulLive(
+    sort: { order: ASC, fields: [date] },
+    filter: { form: { eq: "support" } }
   ) {
     edges {
-      node {
-        frontmatter {
-          date
-          title
-          slug
-          liveForm: live_form
-          liveVenue: live_venue
-        }
-      }
+      node { title, slug, date, venue }
     }
   }
 }
@@ -48,19 +30,16 @@ query {
 
 interface Post {
   node: {
-    frontmatter: {
-      date: string;
-      title: string;
-      slug: string;
-      liveForm: string;
-      liveVenue: string;
-    }
+    title: string;
+    slug: string;
+    date: string;
+    venue: string;
   };
 }
 
 interface Props {
   data: {
-    normal?: {
+    main?: {
       edges: Post[];
     };
     support?: {
@@ -70,9 +49,10 @@ interface Props {
 }
 
 export default function LiveIndex(props: Props) {
-  const normalLives = (props.data.normal || { edges: [] }).edges;
+  const mainLives = (props.data.main || { edges: [] }).edges;
   const supportLives = (props.data.support || { edges: [] }).edges;
   const now = new Date();
+  now.setHours(0, 0, 0, 0);
 
   return (
     <Layout>
@@ -88,29 +68,31 @@ export default function LiveIndex(props: Props) {
             <Cell colPC={6} colSP={12}>
               <h3>れーみ ライブ (ソロ・バンド)</h3>
 
-              {normalLives.map(({ node }) => {
-                 const { title, slug, liveVenue } = node.frontmatter;
-                 const date = new Date(node.frontmatter.date);
+              {mainLives.map(({ node }) => {
+                 const { title, slug, venue } = node;
+                 const date = new Date(node.date);
                  if (date < now) { return null; }
 
-                 return <DetailedLink to={makePermalink({ category: 'live', date, slug })}
+                 return <DetailedLink to={`/live/${slug}`}
                                       date={date}
                                       title={title}
-                                      place={liveVenue} />;
+                                      place={venue}
+                                      key={slug} />;
               })}
             </Cell>
             <Cell colPC={6} colSP={12}>
               <h3>サポートライブ</h3>
 
               {supportLives.map(({ node }) => {
-                 const { title, slug, liveVenue } = node.frontmatter;
-                 const date = new Date(node.frontmatter.date);
+                 const { title, slug, venue } = node;
+                 const date = new Date(node.date);
                  if (date < now) { return null; }
 
-                 return <DetailedLink to={makePermalink({ category: 'live', date, slug })}
+                 return <DetailedLink to={`/live/${slug}`}
                                       date={date}
                                       title={title}
-                                      place={liveVenue} />;
+                                      place={venue}
+                                      key={slug} />;
               })}
             </Cell>
             <Cell colPC={12} colSP={12}>
