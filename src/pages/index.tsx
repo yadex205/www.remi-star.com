@@ -55,6 +55,9 @@ interface Props {
 }
 
 export default function Index(props: Props) {
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
   return (
     <Layout>
       <Helmet>
@@ -80,6 +83,7 @@ export default function Index(props: Props) {
               {props.data.live.edges.map(({ node }, index) => {
                  const { title, slug, venue } = node;
                  const date = new Date(node.date);
+                 if (date < now) { return null; }
                  return (
                    <DetailedLink to={`/live/${slug}`}
                                  date={date}

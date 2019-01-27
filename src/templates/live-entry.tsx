@@ -22,7 +22,7 @@ interface Props {
     post: {
       title: string;
       date: string;
-      venue: string;
+      venue?: string;
       article?: { childMarkdownRemark: { html: string; } };
     };
   };
@@ -47,7 +47,7 @@ export default function LiveEntry({ data: { post } }: Props) {
 
         <h3>{title}</h3>
 
-        <p>place: {venue}</p>
+        <p>place: {venue || '(未定)'}</p>
 
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>

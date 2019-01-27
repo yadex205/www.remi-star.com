@@ -24,7 +24,7 @@ interface Props {
           title: string;
           slug: string;
           date: string;
-          venue: string;
+          venue?: string;
         }
       }[];
     };
@@ -43,7 +43,8 @@ export default function LiveHistroy(props: Props) {
 
         <Grid gutterPC={{ h: 20, v: 0 }} gutterTablet={{ h: 20, v: 0 }} gutterSP={{ v: 0 }}>
           {props.data.posts.edges.map(({ node }) => {
-             const { title, slug, date, venue } = node;
+             const { title, slug, date } = node;
+             const venue = node.venue || '(未定)';
 
             return (
               <Cell colPC={4} colTablet={6} colSP={12}>

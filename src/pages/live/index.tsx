@@ -33,7 +33,7 @@ interface Post {
     title: string;
     slug: string;
     date: string;
-    venue: string;
+    venue?: string;
   };
 }
 
@@ -69,7 +69,8 @@ export default function LiveIndex(props: Props) {
               <h3>れーみ ライブ (ソロ・バンド)</h3>
 
               {mainLives.map(({ node }) => {
-                 const { title, slug, venue } = node;
+                 const { title, slug } = node;
+                 const venue = node.venue || '(未定)';
                  const date = new Date(node.date);
                  if (date < now) { return null; }
 
@@ -84,7 +85,8 @@ export default function LiveIndex(props: Props) {
               <h3>サポートライブ</h3>
 
               {supportLives.map(({ node }) => {
-                 const { title, slug, venue } = node;
+                 const { title, slug } = node;
+                 const venue = node.venue || '(未定)';
                  const date = new Date(node.date);
                  if (date < now) { return null; }
 
