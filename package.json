@@ -20,6 +20,7 @@
     "react-dom": "^16.5.1",
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.7",
+    "react-transition-group": "^2.5.3",
     "redux": "^4.0.0",
     "sanitize.css": "^7.0.3"
   },
@@ -27,6 +28,7 @@
     "@types/reach__router": "^1.2.0",
     "@types/react-helmet": "^5.0.7",
     "@types/react-redux": "^6.0.9",
+    "@types/react-transition-group": "^2.0.15",
     "node-sass": "^4.9.3",
     "node-sass-glob-importer": "^5.2.0",
     "svg-url-loader": "^2.3.2",

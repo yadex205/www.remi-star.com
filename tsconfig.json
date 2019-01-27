@@ -7,7 +7,8 @@
     "paths": {
       "components/*": ["components/*"],
       "assets/*": ["assets/*"],
-      "layout": ["layout"]
+      "layout": ["layout"],
+      "transition": ["transition"]
     },
     "jsx": "react",
     "lib": ["dom", "esnext"],

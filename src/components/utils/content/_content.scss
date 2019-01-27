@@ -1,0 +1,84 @@
+.u-content {
+  $root: &;
+
+  left: 0;
+  width: 100%;
+  opacity: 0.0;
+
+  &__animation {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+    pointer-events: none;
+
+    @for $i from 1 through 8 {
+      & > div:nth-child(#{$i}) {
+        position: absolute;
+        width: 12.5%;
+        height: 100%;
+        left: 12.5% * ($i - 1);
+        top: 0;
+        background-color: pink;
+        transform: scaleY(0);
+        transform-origin: bottom;
+        transition: transform 0.4s #{0.07s * ($i - 1)} cubic-bezier(0.0, 0.6, 0.0, 1.0);
+      }
+    }
+  }
+
+  &__main {
+    background-color: $extra-light-pink;
+  }
+
+  &--entering {
+    position: absolute;
+    opacity: 0.0;
+
+    #{$root}__animation {
+      pointer-events: auto;
+
+      & > div { transform: scaleY(1); }
+    }
+  }
+
+  &--entered {
+    opacity: 1.0;
+
+    #{$root}__animation {
+      pointer-events: none;
+
+      & > div {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+    }
+  }
+
+  &--exiting {
+    opacity: 1.0;
+
+    #{$root}__animation {
+      pointer-events: auto;
+
+      & > div {
+        transform: scaleY(1);
+        transition-timing-function: cubic-bezier(0.8, 0.0, 1.0, 0.4);
+      }
+    }
+  }
+
+  &--exited {
+    opacity: 0.0;
+
+    #{$root}__animation {
+      pointer-events: none;
+
+      & > div {
+        transform: scaleY(0);
+      }
+    }
+  }
+}

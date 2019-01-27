@@ -94,13 +94,14 @@ export default function Index(props: Props) {
             <Cell colPC={5} colTablet={12} colSP={12}>
               <h3>twitter</h3>
               <a className="twitter-timeline"
-                 href="https://twitter.com/remiriya27"
-                 data-widget-id="607049707467120641"
+                 href="https://twitter.com/remiriya27?ref_src=twsrc%5Etfw"
+                 data-lang="ja"
+                 data-dnt="true"
+                 data-theme="light"
                  data-link-color="#d55"
                  data-chrome="noheader nofooter noborders transparent"
                  data-border-color="#ffc6d1"
-                 data-tweet-limit="3"
-                 data-dnt="true">Tweets from @remiriya27</a>
+                 data-tweet-limit="3" >Tweets from @remiriya27</a>
             </Cell>
             <Cell colPC={12} colSP={12}>
               <h3>news</h3>
