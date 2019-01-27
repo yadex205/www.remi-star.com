@@ -1,3 +1,9 @@
+@keyframes main-visual-appear {
+  0% { opacity: 0; }
+  20% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 @keyframes main-visual-image {
   0% {
     transform: scale(1.5);
@@ -13,6 +19,7 @@
   height: calc(100vh - 212px);
   overflow: hidden;
   background-color: $red;
+  animation: main-visual-appear 1.0s ease-out;
 
   @include sp {
     height: calc(100vh - 60px);
