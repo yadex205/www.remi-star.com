@@ -1,6 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { Link, graphql } from 'gatsby';
 
 import Layout from 'layout';
 import Grid, { GridCell as Cell } from 'components/utils/grid';
@@ -97,7 +97,7 @@ export default function LiveIndex(props: Props) {
             </Cell>
             <Cell colPC={12} colSP={12}>
               <p className="a-caption">
-                過去のライブ履歴はこちら（準備中）
+                <Link to="/live/history">過去のライブ履歴はこちら</Link>
               </p>
             </Cell>
           </Grid>
