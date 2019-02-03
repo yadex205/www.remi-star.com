@@ -8,10 +8,9 @@ import SpMenu from 'components/organisms/sp-menu';
 
 const navItems = [
   { label: 'top', to: '/', test: /^\/(index.html)?$/ },
-  { label: 'news', to: '/news', test: /^\/news/ },
+  { label: 'profile', to: '/profile', test: /^\/profile/ },
   { label: 'live', to: '/live', test: /^\/live/ },
   { label: 'works', to: '/works', test: /^\/works/ },
-  { label: 'profile', to: '/profile', test: /^\/profile/ },
   { label: 'contact', to: '/contact', test: /^\/contact/ }
 ];
 
