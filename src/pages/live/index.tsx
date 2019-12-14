@@ -66,7 +66,7 @@ export default function LiveIndex(props: Props) {
         <section>
           <Grid gutterPC={{ h: 40, v: 60 }} gutterSP={{ v: 40 }}>
             <Cell colPC={6} colSP={12}>
-              <h3>れーみ ライブ (ソロ・バンド)</h3>
+              <h3>れーみ Main Live</h3>
 
               {mainLives.map(({ node }) => {
                  const { title, slug } = node;
@@ -82,7 +82,7 @@ export default function LiveIndex(props: Props) {
               })}
             </Cell>
             <Cell colPC={6} colSP={12}>
-              <h3>サポートライブ</h3>
+              <h3>Support Live</h3>
 
               {supportLives.map(({ node }) => {
                  const { title, slug } = node;
