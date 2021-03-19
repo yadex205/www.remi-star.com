@@ -6,9 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     environment: production
-    env:
-      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
-      CONTENTFUL_CDA_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_CDA_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
@@ -34,9 +31,13 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_CDA_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_CDA_ACCESS_TOKEN }}
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+      - uses: netlify/actions/cli@master
         with:
-          name: gatsby-public-artifact
-          path: public
+          args: deploy --dir=public
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
