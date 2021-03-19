@@ -26,9 +26,6 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Install netlify-cli
-        run: npm install -g netlify-cli@^3.0.0
-
       - name: Install Node.js Depdendencies
         run: npm install
 
@@ -39,7 +36,8 @@ jobs:
           CONTENTFUL_CDA_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_CDA_ACCESS_TOKEN }}
 
       - name: Deploy
-        run: netlify deploy --prod --dir=public -m "$GITHUB_SHA"
+        run: npm run deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: ${{ github.sha }}
