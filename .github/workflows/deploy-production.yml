@@ -1,9 +1,12 @@
 name: Deploy Production
 on:
-  - push
-  - workflow_dispatch
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 jobs:
   build:
+    name: Build and Deploy
     runs-on: ubuntu-20.04
     environment: production
     steps:
