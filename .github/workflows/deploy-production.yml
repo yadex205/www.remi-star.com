@@ -1,6 +1,7 @@
-name: Deploy Website To Netlify
+name: Deploy Production
 on:
   - push
+  - workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -16,6 +17,7 @@ jobs:
           cache-name: cache-deps-and-artifacts
         with:
           path: |
+            ~/.npm
             node_modules
             .cache
             public
