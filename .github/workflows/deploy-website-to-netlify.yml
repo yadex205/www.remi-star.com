@@ -15,10 +15,10 @@ jobs:
         env:
           cache-name: cache-deps-and-artifacts
         with:
-          path:
-            - node_modules
-            - .cache
-            - public
+          path: |
+            node_modules
+            .cache
+            public
           key: build-and-deploy-cache-deps-and-artifacts-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             build-and-deploy-cache-node_modules-
