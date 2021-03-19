@@ -13,10 +13,13 @@ jobs:
 
       - uses: actions/cache@v2
         env:
-          cache-name: cache-node-modules
+          cache-name: cache-deps-and-artifacts
         with:
-          path: ~/.npm
-          key: build-and-deploy-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
+          path:
+            - node_modules
+            - .cache
+            - public
+          key: build-and-deploy-cache-deps-and-artifacts-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             build-and-deploy-cache-node_modules-
 
