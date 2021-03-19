@@ -1,7 +1,7 @@
 {
   "exclude": ["./src/**/.*", "./node_modules/**/*"],
   "compilerOptions": {
-    "target": "es5",
+    "target": "esnext",
     "module": "commonjs",
     "baseUrl": "src",
     "paths": {
