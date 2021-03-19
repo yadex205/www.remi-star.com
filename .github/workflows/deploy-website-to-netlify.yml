@@ -1,11 +1,16 @@
-name: build-and-deploy
+name: Deploy Website To Netlify
 on:
   - push
 jobs:
   build:
     runs-on: ubuntu-20.04
+    environment: workflow_environment
+    env:
+      CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+      CONTENTFUL_CDA_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_CDA_ACCESS_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
@@ -14,10 +19,13 @@ jobs:
           key: build-and-deploy-cache-node-modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             build-and-deploy-cache-node_modules-
+
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
+
       - name: Install Node.js Depdendencies
         run: npm install
+
       - name: Build
         run: npm run build
