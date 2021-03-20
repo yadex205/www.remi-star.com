@@ -1,0 +1,23 @@
+.a-icon {
+  @mixin icon-shape($name) {
+    &--#{$name} {
+      mask-image: url('~images/embed/icons/#{$name}.svg');
+    }
+  }
+
+  @include icon-shape('caret-up');
+  @include icon-shape('caret-right');
+  @include icon-shape('caret-down');
+  @include icon-shape('caret-left');
+  @include icon-shape('external-link');
+
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  background-repeat: no-repeat;
+  mask-type: alpha;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
