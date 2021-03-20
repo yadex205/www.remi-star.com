@@ -1,0 +1,15 @@
+.o-global-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+
+  &__brand-wrapper {
+    display: block;
+    width: 72px;
+  }
+
+  &__brand {
+    display: block;
+  }
+}
