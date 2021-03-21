@@ -25,7 +25,6 @@
     "sanitize.css": "^7.0.3",
     "sass": "^1.32.8",
     "svg-url-loader": "^7.1.1",
-    "tsconfig-paths-webpack-plugin": "^3.5.1",
     "typescript": "^4.2.3"
   },
   "devDependencies": {
