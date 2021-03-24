@@ -1,5 +1,9 @@
 const { join } = require('path');
 
+let buildStartedAt = new Date();
+
+const dayReadableStrings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
 module.exports = {
   onCreateWebpackConfig({ stage, actions }) {
     const { setWebpackConfig } = actions;
@@ -11,6 +15,24 @@ module.exports = {
           extensions: ['.js', '.ts', '.tsx'],
         },
       });
+    }
+  },
+
+  onPreBootstrap() {
+    buildStartedAt = new Date();
+  },
+
+  onCreateNode({ node, actions }) {
+    const { createNodeField } = actions;
+
+    if (node.internal.type === 'ContentfulLive') {
+      const liveDate = new Date(node.date);
+      const isFutureLive = !isNaN(liveDate.getDate()) ? liveDate > buildStartedAt : false;
+      const liveDateReadableString = `${liveDate.getFullYear()}.${(liveDate.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}.${liveDate.getDate().toString().padStart(2, '0')} ${dayReadableStrings[liveDate.getDay()]}`;
+      createNodeField({ node, name: 'isFutureLive', value: isFutureLive });
+      createNodeField({ node, name: 'liveDateReadableString', value: liveDateReadableString });
     }
   },
 };

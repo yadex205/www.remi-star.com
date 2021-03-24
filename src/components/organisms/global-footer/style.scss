@@ -1,0 +1,14 @@
+.o-global-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+  margin-top: 60px;
+
+  &__copyright {
+    color: $color-text-sub;
+    font-weight: xd-font-weight('light');
+    font-size: 12px;
+    font-family: $fontset-alphanumeric;
+  }
+}

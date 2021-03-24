@@ -2,6 +2,10 @@
   background-color: $color-background-page;
 
   &__main {
-    margin: 0 16px;
+    .o-section:not(.o-section .o-section) {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
   }
 }

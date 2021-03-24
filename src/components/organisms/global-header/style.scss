@@ -4,9 +4,17 @@
   justify-content: center;
   height: 72px;
 
+  @include device(pc) {
+    height: 96px;
+  }
+
   &__brand-wrapper {
     display: block;
-    width: 72px;
+    width: 96px;
+
+    @include device(pc) {
+      width: 128px;
+    }
   }
 
   &__brand {
