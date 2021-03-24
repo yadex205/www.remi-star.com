@@ -1,5 +1,4 @@
 const { join } = require('path');
-
 let buildStartedAt = new Date();
 
 const dayReadableStrings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -28,9 +27,12 @@ module.exports = {
     if (node.internal.type === 'ContentfulLive') {
       const liveDate = new Date(node.date);
       const isFutureLive = !isNaN(liveDate.getDate()) ? liveDate > buildStartedAt : false;
-      const liveDateReadableString = `${liveDate.getFullYear()}.${(liveDate.getMonth() + 1)
+      const liveDateJst = new Date(liveDate.getTime() + (540 + liveDate.getTimezoneOffset()) * 60 * 1000);
+      const liveDateReadableString = `${liveDateJst.getFullYear()}.${(liveDateJst.getMonth() + 1)
         .toString()
-        .padStart(2, '0')}.${liveDate.getDate().toString().padStart(2, '0')} ${dayReadableStrings[liveDate.getDay()]}`;
+        .padStart(2, '0')}.${liveDateJst.getDate().toString().padStart(2, '0')} ${
+        dayReadableStrings[liveDateJst.getDay()]
+      }`;
       createNodeField({ node, name: 'isFutureLive', value: isFutureLive });
       createNodeField({ node, name: 'liveDateReadableString', value: liveDateReadableString });
     }
