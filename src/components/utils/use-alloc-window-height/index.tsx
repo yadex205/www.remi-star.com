@@ -45,14 +45,16 @@ interface UseAllocWindowHeightArgs {
 
 export function useAllocWindowHeight({ ref }: UseAllocWindowHeightArgs) {
   useEffect(() => {
-    if (!ref.current) {
+    const targetEl = ref.current;
+
+    if (!targetEl) {
       return () => {};
     }
 
-    Decorator.add(ref.current);
+    Decorator.add(targetEl);
 
     return () => {
-      Decorator.delete(ref.current);
+      Decorator.delete(targetEl);
     };
   }, []);
 }

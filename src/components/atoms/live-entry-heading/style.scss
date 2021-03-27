@@ -1,0 +1,33 @@
+.a-live-entry-heading {
+  margin: 0 0 24px 0;
+
+  &__title {
+    position: relative;
+    display: block;
+    padding: 12px 0 0;
+    color: $color-text-section-heading;
+    font-weight: xd-font-weight('light');
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 3px;
+      border-radius: 1.5px;
+      background-color: $color-brand-primary;
+    }
+  }
+
+  &__summary {
+    margin-top: 4px;
+    color: $color-text-sub;
+    font-weight: xd-font-weight('regular');
+    font-size: 16px;
+  }
+
+  &__summary-delimiter {
+    margin: 0 12px;
+  }
+}

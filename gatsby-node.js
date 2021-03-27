@@ -2,8 +2,30 @@ const { join } = require('path');
 let buildStartedAt = new Date();
 
 const dayReadableStrings = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const liveEntryTemplateModulePath = require.resolve('./src/templates/live-entry.tsx');
 
 module.exports = {
+  async createPages({ actions, graphql }) {
+    const { data } = await graphql(`
+      query {
+        allContentfulLive {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
+      }
+    `);
+    data.allContentfulLive.edges.forEach(({ node }) => {
+      actions.createPage({
+        path: `/live/${node.slug}`,
+        component: liveEntryTemplateModulePath,
+        context: { slug: node.slug },
+      });
+    });
+  },
+
   onCreateWebpackConfig({ stage, actions }) {
     const { setWebpackConfig } = actions;
 

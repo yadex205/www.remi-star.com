@@ -1,0 +1,22 @@
+.a-section-heading {
+  margin: 64px 0 24px;
+
+  &__text {
+    position: relative;
+    display: block;
+    padding: 12px 0 0;
+    color: $color-text-section-heading;
+    font-weight: xd-font-weight('light');
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 3px;
+      border-radius: 1.5px;
+      background-color: $color-brand-primary;
+    }
+  }
+}

@@ -2,6 +2,12 @@
   background-color: $color-background-page;
 
   &__main {
+    .a-page-heading {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 0 16px;
+    }
+
     .o-section:not(.o-section .o-section) {
       max-width: 720px;
       margin: 0 auto;

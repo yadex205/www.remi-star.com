@@ -13,7 +13,6 @@ export const General: React.FC = ({ children }) => {
   useAllocWindowHeight({ ref: rootRef });
 
   const onOpenRequested = useCallback(() => {
-    console.log('aoeip');
     setMenuOpened(true);
   }, []);
   const onCloseRequested = useCallback(() => {
