@@ -10,6 +10,14 @@
   @include icon-shape('caret-down');
   @include icon-shape('caret-left');
   @include icon-shape('external-link');
+  @include icon-shape('heart');
+  @include icon-shape('home');
+  @include icon-shape('list');
+  @include icon-shape('mail');
+  @include icon-shape('musical-note');
+  @include icon-shape('shopping-bag');
+  @include icon-shape('star');
+  @include icon-shape('times');
 
   display: inline-block;
   width: 1em;

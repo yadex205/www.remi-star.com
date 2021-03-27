@@ -1,15 +1,12 @@
 .a-top-section-heading {
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
+  margin: 86px 0 24px;
   padding-top: 24px;
   color: $color-brand-primary;
   font-weight: xd-font-weight('light');
+  font-size: 40px;
   font-family: $fontset-alphanumeric;
-
-  &:not(:first-child) {
-    margin-top: 66px;
-  }
 
   &__wrapper {
     position: relative;
