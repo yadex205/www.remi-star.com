@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { PageMeta } from 'components/utils/page-meta';
 import { Text } from 'components/atoms/text';
 import { PageHeading } from 'components/atoms/page-heading';
 import { SectionHeading } from 'components/atoms/section-heading';
@@ -9,6 +10,8 @@ import { General } from 'components/templates/general';
 const Page: React.FC = () => {
   return (
     <General>
+      <PageMeta title="PROFILE" />
+
       <PageHeading>PROFILE</PageHeading>
 
       <Section>

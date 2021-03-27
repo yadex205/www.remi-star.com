@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import { PageMeta } from 'components/utils/page-meta';
 import { useFutureLives } from 'components/utils/use-future-lives';
 import { LiveSummaryLink } from 'components/atoms/live-summary-link';
 import { Icon } from 'components/atoms/icon';
@@ -20,6 +21,8 @@ const Page: React.FC = () => {
 
   return (
     <General>
+      <PageMeta title="LIVE" />
+
       <PageHeading>LIVE</PageHeading>
 
       <Section>

@@ -5,6 +5,13 @@ const sassGlobImporter = require('node-sass-glob-importer');
 module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://remi-star.com',
+        stripQueryString: true,
+      },
+    },
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-plugin-sass',
