@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Swiper as SwiperCore, Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -51,14 +51,6 @@ interface TopMainVisualSlideProps {
 }
 
 const TopMainVisualSlideImage: React.FC<TopMainVisualSlideProps> = props => {
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    imgRef.current?.addEventListener('load', () => {
-      console.log(imgRef.current);
-    });
-  }, []);
-
   return (
     <picture className="m-top-main-visual__slide-image">
       {props.imgWebpSp1x && props.imgWebpSp2x && (
@@ -85,7 +77,7 @@ const TopMainVisualSlideImage: React.FC<TopMainVisualSlideProps> = props => {
         media="(min-width: 641px)"
         srcSet={`${props.imgJpegPc1x} 1x, ${props.imgJpegPc2x} 2x`}
       />
-      <img ref={imgRef} alt={props.alt} />
+      <img alt={props.alt} />
     </picture>
   );
 };
