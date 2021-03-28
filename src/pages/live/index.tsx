@@ -57,10 +57,7 @@ const Page: React.FC = () => {
         <SectionHeading>過去のライブ</SectionHeading>
         <NavList>
           <NavListItem.Router to="/live/history" iconComponent={<Icon name="caret-right" />}>
-            過去のれーみMainライブ一覧
-          </NavListItem.Router>
-          <NavListItem.Router to="/live/history/support" iconComponent={<Icon name="caret-right" />}>
-            過去のサポートライブ一覧
+            過去のライブ一覧
           </NavListItem.Router>
         </NavList>
       </Section>
