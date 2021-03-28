@@ -106,7 +106,7 @@
     background-color: $color-brand-primary;
     color: $color-text-main-white;
     font-weight: xd-font-weight('light');
-    font-size: 24px;
+    font-size: 20px;
     font-family: $fontset-alphanumeric;
   }
 
@@ -153,5 +153,20 @@
       display: block;
       font-size: 20px;
     }
+  }
+
+  &__social-links-container {
+    display: flex;
+    justify-content: center;
+    margin: 36px 0 0 0;
+    padding: 0;
+    list-style-type: none;
+    font-weight: xd-font-weight('light');
+    font-size: 12px;
+    font-family: $fontset-alphanumeric;
+  }
+
+  &__social-link-wrapper {
+    margin: 0 6px;
   }
 }

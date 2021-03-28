@@ -124,6 +124,49 @@ export const GlobalMenu: React.FC<GlobalMenuProps> = ({ opened, onCloseRequested
               Webサイトについて
             </NavListItem.Router>
           </NavList>
+
+          <ul className="o-global-menu__social-links-container">
+            <li className="o-global-menu__social-link-wrapper">
+              <a
+                className="o-global-menu__soclai-link"
+                href="https://twitter.com/remiriya27"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Twitter
+              </a>
+            </li>
+            <li className="o-global-menu__social-link-wrapper">
+              <a
+                className="o-global-menu__soclai-link"
+                href="https://www.instagram.com/remi_tff/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Instagram
+              </a>
+            </li>
+            <li className="o-global-menu__social-link-wrapper">
+              <a
+                className="o-global-menu__soclai-link"
+                href="https://www.youtube.com/channel/UC0R8jHmD1ZpzvoS-jrfYK3Q"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Youtube
+              </a>
+            </li>
+            <li className="o-global-menu__social-link-wrapper">
+              <a
+                className="o-global-menu__soclai-link"
+                href="https://lin.ee/rqvWnEh"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Line@
+              </a>
+            </li>
+          </ul>
         </main>
       </div>
     </div>
