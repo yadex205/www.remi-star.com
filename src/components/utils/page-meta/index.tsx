@@ -18,6 +18,7 @@ export const PageMeta: React.FC<PageMetaProps> = ({
 
   return (
     <Helmet>
+      <html lang="ja" />
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta property="og:title" content={title} />
@@ -25,6 +26,10 @@ export const PageMeta: React.FC<PageMetaProps> = ({
       <meta property="og:image" content={OgpImage} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="れーみ Official Website" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content={OgpImage} />
       {children}
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </Helmet>
