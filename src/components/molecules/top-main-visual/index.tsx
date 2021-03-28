@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Swiper as SwiperCore, Autoplay, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -38,71 +38,140 @@ import TopMainVIsualFrame from 'images/top-main-visual-frame.svg';
 
 SwiperCore.use([Autoplay, EffectFade]);
 
+interface TopMainVisualSlideProps {
+  imgJpegSp1x: string;
+  imgJpegSp2x: string;
+  imgJpegPc1x: string;
+  imgJpegPc2x: string;
+  imgWebpSp1x?: string;
+  imgWebpSp2x?: string;
+  imgWebpPc1x?: string;
+  imgWebpPc2x?: string;
+  alt?: string;
+}
+
+const TopMainVisualSlideImage: React.FC<TopMainVisualSlideProps> = props => {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    imgRef.current?.addEventListener('load', () => {
+      console.log(imgRef.current);
+    });
+  }, []);
+
+  return (
+    <picture className="m-top-main-visual__slide-image">
+      {props.imgWebpSp1x && props.imgWebpSp2x && (
+        <source
+          type="image/webp"
+          media="(max-width: 640px)"
+          srcSet={`${props.imgWebpSp1x} 1x, ${props.imgWebpSp2x} 2x`}
+        />
+      )}
+      {props.imgWebpPc1x && props.imgWebpPc2x && (
+        <source
+          type="image/webp"
+          media="(min-width: 641px)"
+          srcSet={`${props.imgWebpPc1x} 1x, ${props.imgWebpPc2x} 2x`}
+        />
+      )}
+      <source
+        type="image/jpeg"
+        media="(max-width: 640px)"
+        srcSet={`${props.imgJpegSp1x} 1x, ${props.imgJpegSp2x} 2x`}
+      />
+      <source
+        type="image/jpeg"
+        media="(min-width: 641px)"
+        srcSet={`${props.imgJpegPc1x} 1x, ${props.imgJpegPc2x} 2x`}
+      />
+      <img ref={imgRef} alt={props.alt} />
+    </picture>
+  );
+};
+
 export const TopMainVisual: React.FC = () => (
   <div className="m-top-main-visual">
     <Swiper
       className="m-top-main-visual__slides-container"
+      autoplay
       allowTouchMove={false}
       effect="fade"
       loop
+      preloadImages
       simulateTouch={false}
-      autoplay
     >
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual01Sp1x} 1x, ${TopMainVisual01Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual01Pc1x} 1x, ${TopMainVisual01Pc2x} 2x`} />
-          <img alt="Main visual 01" src={TopMainVisual01Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual01Sp1x}
+          imgJpegSp2x={TopMainVisual01Sp2x}
+          imgJpegPc1x={TopMainVisual01Pc1x}
+          imgJpegPc2x={TopMainVisual01Pc2x}
+          alt="Main visual 01"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual02Sp1x} 1x, ${TopMainVisual02Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual02Pc1x} 1x, ${TopMainVisual02Pc2x} 2x`} />
-          <img alt="Main visual 02" src={TopMainVisual02Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual02Sp1x}
+          imgJpegSp2x={TopMainVisual02Sp2x}
+          imgJpegPc1x={TopMainVisual02Pc1x}
+          imgJpegPc2x={TopMainVisual02Pc2x}
+          alt="Main visual 02"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual03Sp1x} 1x, ${TopMainVisual03Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual03Pc1x} 1x, ${TopMainVisual03Pc2x} 2x`} />
-          <img alt="Main visual 03" src={TopMainVisual03Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual03Sp1x}
+          imgJpegSp2x={TopMainVisual03Sp2x}
+          imgJpegPc1x={TopMainVisual03Pc1x}
+          imgJpegPc2x={TopMainVisual03Pc2x}
+          alt="Main visual 03"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual04Sp1x} 1x, ${TopMainVisual04Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual04Pc1x} 1x, ${TopMainVisual04Pc2x} 2x`} />
-          <img alt="Main visual 04" src={TopMainVisual04Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual04Sp1x}
+          imgJpegSp2x={TopMainVisual04Sp2x}
+          imgJpegPc1x={TopMainVisual04Pc1x}
+          imgJpegPc2x={TopMainVisual04Pc2x}
+          alt="Main visual 04"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual05Sp1x} 1x, ${TopMainVisual05Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual05Pc1x} 1x, ${TopMainVisual05Pc2x} 2x`} />
-          <img alt="Main visual 05" src={TopMainVisual05Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual05Sp1x}
+          imgJpegSp2x={TopMainVisual05Sp2x}
+          imgJpegPc1x={TopMainVisual05Pc1x}
+          imgJpegPc2x={TopMainVisual05Pc2x}
+          alt="Main visual 05"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual06Sp1x} 1x, ${TopMainVisual06Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual06Pc1x} 1x, ${TopMainVisual06Pc2x} 2x`} />
-          <img alt="Main visual 06" src={TopMainVisual06Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual06Sp1x}
+          imgJpegSp2x={TopMainVisual06Sp2x}
+          imgJpegPc1x={TopMainVisual06Pc1x}
+          imgJpegPc2x={TopMainVisual06Pc2x}
+          alt="Main visual 06"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual07Sp1x} 1x, ${TopMainVisual07Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual07Pc1x} 1x, ${TopMainVisual07Pc2x} 2x`} />
-          <img alt="Main visual 07" src={TopMainVisual07Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual07Sp1x}
+          imgJpegSp2x={TopMainVisual07Sp2x}
+          imgJpegPc1x={TopMainVisual07Pc1x}
+          imgJpegPc2x={TopMainVisual07Pc2x}
+          alt="Main visual 07"
+        />
       </SwiperSlide>
       <SwiperSlide className="m-top-main-visual__slide">
-        <picture className="m-top-main-visual__slide-image">
-          <source media="(max-width: 640px)" srcSet={`${TopMainVisual08Sp1x} 1x, ${TopMainVisual08Sp2x} 2x`} />
-          <source media="(min-width: 641px)" srcSet={`${TopMainVisual08Pc1x} 1x, ${TopMainVisual08Pc2x} 2x`} />
-          <img alt="Main visual 08" src={TopMainVisual08Sp1x} />
-        </picture>
+        <TopMainVisualSlideImage
+          imgJpegSp1x={TopMainVisual08Sp1x}
+          imgJpegSp2x={TopMainVisual08Sp2x}
+          imgJpegPc1x={TopMainVisual08Pc1x}
+          imgJpegPc2x={TopMainVisual08Pc2x}
+          alt="Main visual 08"
+        />
       </SwiperSlide>
     </Swiper>
     <img className="m-top-main-visual__frame" alt="Main visual frame" src={TopMainVIsualFrame} />
