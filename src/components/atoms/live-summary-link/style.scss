@@ -9,6 +9,7 @@
   &__date {
     margin-bottom: 4px;
     color: $color-text-sub;
+    font-weight: xd-font-weight('light');
     font-size: 14px;
     font-family: $fontset-alphanumeric;
   }
@@ -16,7 +17,6 @@
   &__title {
     display: -webkit-box;
     overflow: hidden;
-    font-weight: xd-font-weight('semibold');
     font-size: 20px;
     font-family: $fontset-jp-mincho;
     -webkit-line-clamp: 2;
