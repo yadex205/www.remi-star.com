@@ -26,3 +26,5 @@ export const TwitterEmbed: React.FC<TwitterEmbedProps> = ({ screenName }) => (
     </div>
   </aside>
 );
+
+export default TwitterEmbed; // for React.lazy

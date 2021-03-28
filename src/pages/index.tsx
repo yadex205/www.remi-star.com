@@ -5,7 +5,7 @@ import { useFutureLives } from 'components/utils/use-future-lives';
 import { Icon } from 'components/atoms/icon';
 import { LiveSummaryLink } from 'components/atoms/live-summary-link';
 import { TopSectionHeading } from 'components/atoms/top-section-heading';
-import { TwitterEmbed } from 'components/atoms/twitter-embed';
+const TwitterEmbed = React.lazy(() => import('components/atoms/twitter-embed'));
 import { NavList, NavListItem } from 'components/molecules/nav-list';
 import { TopKanbanNavList, TopKanbanNavListItem } from 'components/molecules/top-kanban-nav-list';
 import { TopMainVisual } from 'components/molecules/top-main-visual';
@@ -13,6 +13,7 @@ import { Section } from 'components/organisms/section';
 import { General } from 'components/templates/general';
 
 const Page: React.FC = () => {
+  const isSsr = typeof window === 'undefined';
   const futureLives = useFutureLives();
   const mainFutureLives = useMemo(() => {
     return futureLives
@@ -78,7 +79,17 @@ const Page: React.FC = () => {
 
       <Section>
         <TopSectionHeading>TWITTER</TopSectionHeading>
-        <TwitterEmbed screenName="remiriya27" />
+        {!isSsr && (
+          <React.Suspense
+            fallback={
+              <a href="https://twitter.com/remiriya27" target="_blank" rel="noopener noreferrer">
+                Tweets by remiriya27
+              </a>
+            }
+          >
+            <TwitterEmbed screenName="remiriya27" />
+          </React.Suspense>
+        )}
       </Section>
     </General>
   );
