@@ -1,56 +1,63 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import { PageProps, graphql } from 'gatsby';
 
-import { getDayString } from 'assets/js/utils';
+import { PageMeta } from 'components/utils/page-meta';
+import { LiveEntryHeading } from 'components/atoms/live-entry-heading';
+import { PageHeading } from 'components/atoms/page-heading';
+import { Section } from 'components/organisms/section';
+import { General } from 'components/templates/general';
 
-import Layout from 'layout';
-
-export const pageQuery = graphql`
-query($id: String!) {
-  post: contentfulLive(id: { eq: $id }) {
-    title
-    date
-    venue
-    article { childMarkdownRemark { html } }
-  }
-}
-`;
-
-interface Props {
-  data: {
-    post: {
-      title: string;
-      date: string;
-      venue?: string;
-      article?: { childMarkdownRemark: { html: string; } };
+interface PageData {
+  contentfulLive: {
+    title: string;
+    venue?: string;
+    article?: {
+      childMarkdownRemark: { html: string };
+    };
+    fields: {
+      liveDateReadableString: string;
     };
   };
 }
 
-export default function LiveEntry({ data: { post } }: Props) {
-  const { title, venue } = post;
-  const html = post.article ? post.article.childMarkdownRemark.html : '';
-  const date = new Date(post.date);
-  const dateStr = [date.getFullYear(),
-                   (date.getMonth() + 1).toString().padStart(2, '0'),
-                   date.getDate().toString().padStart(2, '0')].join('.');
-
-  return (
-    <Layout>
-      <Helmet>
-        <title>{title} | live | れーみ official website</title>
-      </Helmet>
-
-      <article className="t-live-entry">
-        <h2>live <small>{dateStr} {getDayString(date)}</small></h2>
-
-        <h3>{title}</h3>
-
-        <p>place: {venue || '(未定)'}</p>
-
-        <div dangerouslySetInnerHTML={{ __html: html }} />
-      </article>
-    </Layout>
-  );
+interface PageContext {
+  slug: string;
 }
+
+export const pageQuery = graphql`
+  query($slug: String!) {
+    contentfulLive(slug: { eq: $slug }) {
+      title
+      venue
+      article {
+        childMarkdownRemark {
+          html
+        }
+      }
+      fields {
+        liveDateReadableString
+      }
+    }
+  }
+`;
+
+const Template: React.FC<PageProps<PageData, PageContext>> = ({ data }) => (
+  <General>
+    <PageMeta
+      title={`${data.contentfulLive.title}｜LIVE`}
+      description={`${data.contentfulLive.title} / ${data.contentfulLive.fields.liveDateReadableString} / at ${data.contentfulLive.venue}`}
+    />
+
+    <PageHeading>LIVE</PageHeading>
+
+    <Section>
+      <LiveEntryHeading venue={data.contentfulLive.venue} date={data.contentfulLive.fields.liveDateReadableString}>
+        {data.contentfulLive.title}
+      </LiveEntryHeading>
+
+      <Section dangerouslySetInnerHTML={{ __html: data.contentfulLive.article?.childMarkdownRemark?.html || '' }} />
+    </Section>
+  </General>
+);
+
+export default Template;

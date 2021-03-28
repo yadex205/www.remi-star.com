@@ -1,0 +1,46 @@
+.m-top-main-visual {
+  position: relative;
+  margin-bottom: 56px;
+  padding-bottom: #{414 / 375 * 100%};
+
+  @include device(pc) {
+    padding-bottom: 50%;
+  }
+
+  &__slides-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__slide {
+    transform: translateZ(0);
+  }
+
+  &__slide-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    > img {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-position: center;
+    }
+  }
+
+  &__frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+}

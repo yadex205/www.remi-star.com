@@ -1,63 +1,42 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { graphql } from 'gatsby';
+import React, { useMemo, useState } from 'react';
 
-import Layout from 'layout';
-import Grid, { GridCell as Cell } from 'components/utils/grid';
-import DetailedLink from 'components/molecules/detailed-link';
+import { PageMeta } from 'components/utils/page-meta';
+import { usePastLives } from 'components/utils/use-past-lives';
+import { LiveSummaryLink } from 'components/atoms/live-summary-link';
+import { PageHeading } from 'components/atoms/page-heading';
+import { Pagination } from 'components/molecules/pagination';
+import { Section } from 'components/organisms/section';
+import { General } from 'components/templates/general';
 
-export const pageQuery = graphql`
-  query {
-    posts: allContentfulLive(sort: { order: DESC, fields: [date] }) {
-      edges {
-        node { title, slug, date, venue }
-      }
-    }
-  }
-`;
+const Page: React.FC = () => {
+  const [page, setPage] = useState(1);
+  const lives = usePastLives();
 
-interface Props {
-  data: {
-    posts: {
-      edges: {
-        node: {
-          title: string;
-          slug: string;
-          date: string;
-          venue?: string;
-        }
-      }[];
-    };
-  };
-}
+  const visibleLives = useMemo(() => {
+    return lives.slice(20 * (page - 1), 20 * page);
+  }, [page, lives]);
 
-export default function LiveHistroy(props: Props) {
   return (
-    <Layout>
-      <Helmet>
-        <title>history | live | れーみ official website</title>
-      </Helmet>
+    <General>
+      <PageMeta title="LIVE" />
 
-      <article className="t-live-history">
-        <h2>live history</h2>
+      <PageHeading>LIVE HISTORY</PageHeading>
 
-        <Grid gutterPC={{ h: 20, v: 0 }} gutterTablet={{ h: 20, v: 0 }} gutterSP={{ v: 0 }}>
-          {props.data.posts.edges.map(({ node }) => {
-             const { title, slug, date } = node;
-             const venue = node.venue || '(未定)';
-
-            return (
-              <Cell colPC={4} colTablet={6} colSP={12}>
-                <DetailedLink to={`/live/${slug}`}
-                              date={date}
-                              title={title}
-                              place={venue}
-                              key={slug} />
-              </Cell>
-            );
-          })}
-        </Grid>
-      </article>
-    </Layout>
+      <Section>
+        {visibleLives.map(live => (
+          <LiveSummaryLink
+            key={live.slug}
+            to={`/live/${live.slug}`}
+            date={live.fields.liveDateReadableString}
+            venue={`at ${live.venue}`}
+          >
+            {live.title}
+          </LiveSummaryLink>
+        ))}
+        <Pagination current={page} length={Math.ceil(lives.length / 20)} onPageRequested={page => setPage(page)} />
+      </Section>
+    </General>
   );
-}
+};
+
+export default Page;

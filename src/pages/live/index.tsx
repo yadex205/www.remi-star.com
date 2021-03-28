@@ -1,110 +1,68 @@
-import React from 'react';
-import Helmet from 'react-helmet';
-import { Link, graphql } from 'gatsby';
+import React, { useMemo } from 'react';
 
-import Layout from 'layout';
-import Grid, { GridCell as Cell } from 'components/utils/grid';
-import DetailedLink from 'components/molecules/detailed-link';
+import { PageMeta } from 'components/utils/page-meta';
+import { useFutureLives } from 'components/utils/use-future-lives';
+import { LiveSummaryLink } from 'components/atoms/live-summary-link';
+import { Icon } from 'components/atoms/icon';
+import { PageHeading } from 'components/atoms/page-heading';
+import { SectionHeading } from 'components/atoms/section-heading';
+import { NavList, NavListItem } from 'components/molecules/nav-list';
+import { Section } from 'components/organisms/section';
+import { General } from 'components/templates/general';
 
-export const pageQuery = graphql`
-query {
-  main: allContentfulLive(
-    sort: { order: ASC, fields: [date] },
-    filter: { form: { ne: "support" } }
-  ) {
-    edges {
-      node { title, slug, date, venue }
-    }
-  }
-
-  support: allContentfulLive(
-    sort: { order: ASC, fields: [date] },
-    filter: { form: { eq: "support" } }
-  ) {
-    edges {
-      node { title, slug, date, venue }
-    }
-  }
-}
-`;
-
-interface Post {
-  node: {
-    title: string;
-    slug: string;
-    date: string;
-    venue?: string;
-  };
-}
-
-interface Props {
-  data: {
-    main?: {
-      edges: Post[];
-    };
-    support?: {
-      edges: Post[];
-    };
-  };
-}
-
-export default function LiveIndex(props: Props) {
-  const mainLives = (props.data.main || { edges: [] }).edges;
-  const supportLives = (props.data.support || { edges: [] }).edges;
-  const now = new Date();
-  now.setHours(0, 0, 0, 0);
+const Page: React.FC = () => {
+  const futureLives = useFutureLives();
+  const mainLives = useMemo(() => {
+    return futureLives.filter(live => live.form !== 'support').reverse();
+  }, [futureLives]);
+  const supportLives = useMemo(() => {
+    return futureLives.filter(live => live.form === 'support').reverse();
+  }, [futureLives]);
 
   return (
-    <Layout>
-      <Helmet>
-        <title>live | れーみ official website</title>
-      </Helmet>
+    <General>
+      <PageMeta title="LIVE" />
 
-      <article className="t-live-index">
-        <h2>live</h2>
+      <PageHeading>LIVE</PageHeading>
 
-        <section>
-          <Grid gutterPC={{ h: 40, v: 60 }} gutterSP={{ v: 40 }}>
-            <Cell colPC={6} colSP={12}>
-              <h3>れーみ Main Live</h3>
+      <Section>
+        <SectionHeading>れーみ Main Live</SectionHeading>
+        {mainLives.map(live => (
+          <LiveSummaryLink
+            key={live.slug}
+            to={`/live/${live.slug}`}
+            date={live.fields.liveDateReadableString}
+            venue={`at ${live.venue}`}
+          >
+            {live.title}
+          </LiveSummaryLink>
+        ))}
+      </Section>
 
-              {mainLives.map(({ node }) => {
-                 const { title, slug } = node;
-                 const venue = node.venue || '(未定)';
-                 const date = new Date(node.date);
-                 if (date < now) { return null; }
+      <Section>
+        <SectionHeading>サポートライブ</SectionHeading>
+        {supportLives.map(live => (
+          <LiveSummaryLink
+            key={live.slug}
+            to={`/live/${live.slug}`}
+            date={live.fields.liveDateReadableString}
+            venue={`at ${live.venue}`}
+          >
+            {live.title}
+          </LiveSummaryLink>
+        ))}
+      </Section>
 
-                 return <DetailedLink to={`/live/${slug}`}
-                                      date={date}
-                                      title={title}
-                                      place={venue}
-                                      key={slug} />;
-              })}
-            </Cell>
-            <Cell colPC={6} colSP={12}>
-              <h3>Support Live</h3>
-
-              {supportLives.map(({ node }) => {
-                 const { title, slug } = node;
-                 const venue = node.venue || '(未定)';
-                 const date = new Date(node.date);
-                 if (date < now) { return null; }
-
-                 return <DetailedLink to={`/live/${slug}`}
-                                      date={date}
-                                      title={title}
-                                      place={venue}
-                                      key={slug} />;
-              })}
-            </Cell>
-            <Cell colPC={12} colSP={12}>
-              <p className="a-caption">
-                <Link to="/live/history">過去のライブ履歴はこちら</Link>
-              </p>
-            </Cell>
-          </Grid>
-        </section>
-      </article>
-    </Layout>
+      <Section>
+        <SectionHeading>過去のライブ</SectionHeading>
+        <NavList>
+          <NavListItem.Router to="/live/history" iconComponent={<Icon name="caret-right" />}>
+            過去のライブ一覧
+          </NavListItem.Router>
+        </NavList>
+      </Section>
+    </General>
   );
-}
+};
+
+export default Page;

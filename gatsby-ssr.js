@@ -1,1 +1,1 @@
-import './src/assets/css/app.sass';
+import './src/styles/index.sass';

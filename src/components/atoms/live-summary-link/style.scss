@@ -1,0 +1,40 @@
+.a-live-summary-link {
+  position: relative;
+  display: block;
+  margin-bottom: 12px;
+  padding: 24px 48px 24px 16px;
+  border: 1px solid $color-border-card;
+  background-color: $color-background-card;
+
+  &__date {
+    margin-bottom: 4px;
+    color: $color-text-sub;
+    font-weight: xd-font-weight('light');
+    font-size: 14px;
+    font-family: $fontset-alphanumeric;
+  }
+
+  &__title {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 20px;
+    font-family: $fontset-jp-mincho;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__venue {
+    margin-top: 8px;
+    color: $color-text-sub;
+    font-size: 12px;
+    text-align: right;
+  }
+
+  > .a-icon {
+    position: absolute;
+    top: calc(50% - 12px);
+    right: 12px;
+    color: $color-icon-navigation;
+    font-size: 24px;
+  }
+}

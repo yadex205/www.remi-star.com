@@ -1,0 +1,27 @@
+.o-global-footer {
+  margin-top: 60px;
+  padding: 24px 0;
+
+  &__social-links-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 12px 0;
+    padding: 0;
+    list-style-type: none;
+    font-weight: xd-font-weight('light');
+    font-size: 12px;
+    font-family: $fontset-alphanumeric;
+  }
+
+  &__social-link-wrapper {
+    margin: 0 6px;
+  }
+
+  &__copyright {
+    color: $color-text-sub;
+    font-weight: xd-font-weight('light');
+    font-size: 12px;
+    font-family: $fontset-alphanumeric;
+    text-align: center;
+  }
+}

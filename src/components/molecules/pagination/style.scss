@@ -1,0 +1,40 @@
+.m-pagination {
+  margin-top: 24px;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__prev-button,
+  &__next-button {
+    display: flex;
+    align-items: center;
+    margin: 0 12px;
+    border: 0;
+    background: none;
+    outline: 0;
+    cursor: pointer;
+    appearance: none;
+
+    > .a-icon {
+      display: block;
+      margin: 0 auto;
+      color: $color-icon-navigation;
+      font-size: 24px;
+    }
+
+    &:disabled > .a-icon {
+      color: $color-text-sub;
+    }
+  }
+
+  &__prev-button-text,
+  &__next-button-text {
+    display: block;
+    font-size: 16px;
+    font-family: $fontset-jp-mincho;
+    line-height: 1;
+  }
+}

@@ -1,0 +1,9 @@
+.a-twitter-embed {
+  &__wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1px solid $color-border-card;
+    background-color: $color-background-card;
+  }
+}

@@ -1,0 +1,19 @@
+.o-global-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 72px;
+
+  @include device(pc) {
+    height: 96px;
+  }
+
+  &__brand-wrapper {
+    display: block;
+    width: 96px;
+  }
+
+  &__brand {
+    display: block;
+  }
+}

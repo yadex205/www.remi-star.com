@@ -1,26 +1,28 @@
 import React from 'react';
-import Helmet from 'react-helmet';
 
-import Layout from 'layout';
+import { PageMeta } from 'components/utils/page-meta';
+import { Text } from 'components/atoms/text';
+import { PageHeading } from 'components/atoms/page-heading';
+import { Section } from 'components/organisms/section';
+import { General } from 'components/templates/general';
 
-export default function ContactIndex() {
+const Page: React.FC = () => {
   return (
-    <Layout>
-      <Helmet>
-        <title>contact | れーみ official website</title>
-      </Helmet>
+    <General>
+      <PageMeta title="CONTACT" />
 
-      <article className="t-profile-index">
-        <h2>contact</h2>
-        <section>
-          <p>
-            メッセージやお仕事(作曲・編曲)依頼、サイトへのご意見をお待ちしております。
-            また、ライブの予約もこちらで受け付けておりますので、どうぞご利用ください。
-          </p>
-          <p>内容によってはご返答致しかねる場合もございます。あらかじめご了承ください。</p>
-          <p>remiriyaaa [at] yahoo.co.jp</p>
-        </section>
-      </article>
-    </Layout>
+      <PageHeading>CONTACT</PageHeading>
+
+      <Section>
+        <Text>
+          メッセージやお仕事（作曲・編曲）依頼、サイトへのご意見をお待ちしております。
+          また、ライブの予約もこちらで受け付けておりますので、どうぞご利用ください。
+        </Text>
+        <Text>内容によっては返答致しかねる場合もございます。予めご了承ください。</Text>
+        <Text>remiriyaaa [at] yahoo.co.jp</Text>
+      </Section>
+    </General>
   );
-}
+};
+
+export default Page;
