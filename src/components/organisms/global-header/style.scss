@@ -11,10 +11,6 @@
   &__brand-wrapper {
     display: block;
     width: 96px;
-
-    @include device(pc) {
-      width: 128px;
-    }
   }
 
   &__brand {
