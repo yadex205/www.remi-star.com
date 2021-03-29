@@ -18,8 +18,8 @@ const Page: React.FC = () => {
   const mainFutureLives = useMemo(() => {
     return futureLives
       .filter(live => live.form !== 'support')
-      .slice(0, 3)
-      .reverse();
+      .reverse()
+      .slice(0, 3);
   }, [futureLives]);
 
   return (
