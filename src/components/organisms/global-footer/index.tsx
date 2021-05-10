@@ -6,7 +6,7 @@ export const GlobalFooter: React.FC = () => (
       <li className="o-global-footer__social-link-wrapper">
         <a
           className="o-global-footer__soclai-link"
-          href="https://twitter.com/remiriya27"
+          href="https://twitter.com/remi_tff"
           target="_blank"
           rel="noopener noreferrer"
         >

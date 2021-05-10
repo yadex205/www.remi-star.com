@@ -129,7 +129,7 @@ export const GlobalMenu: React.FC<GlobalMenuProps> = ({ opened, onCloseRequested
             <li className="o-global-menu__social-link-wrapper">
               <a
                 className="o-global-menu__soclai-link"
-                href="https://twitter.com/remiriya27"
+                href="https://twitter.com/remi_tff"
                 target="_blank"
                 rel="noopener noreferrer"
               >

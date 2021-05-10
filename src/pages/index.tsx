@@ -82,12 +82,12 @@ const Page: React.FC = () => {
         {!isSsr && (
           <React.Suspense
             fallback={
-              <a href="https://twitter.com/remiriya27" target="_blank" rel="noopener noreferrer">
-                Tweets by remiriya27
+              <a href="https://twitter.com/remi_tff" target="_blank" rel="noopener noreferrer">
+                Tweets by remi_tff
               </a>
             }
           >
-            <TwitterEmbed screenName="remiriya27" />
+            <TwitterEmbed screenName="remi_tff" />
           </React.Suspense>
         )}
       </Section>
