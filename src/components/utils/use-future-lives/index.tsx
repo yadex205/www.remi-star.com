@@ -38,5 +38,8 @@ export function useFutureLives() {
     }
   `);
 
-  return useMemo(() => data.allContentfulLive.edges.map(({ node }) => node), [data]);
+  return useMemo(() => {
+    const now = new Date();
+    return data.allContentfulLive.edges.map(({ node }) => node).filter(node => new Date(node.date) >= now);
+  }, [data]);
 }
